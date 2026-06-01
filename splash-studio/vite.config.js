@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  base: process.env.GITHUB_ACTIONS ? '/websites/splash-studio/' : '/',
   root: '.',
   publicDir: 'public',
   build: {
