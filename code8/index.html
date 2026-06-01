@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CODE8 — студия визуального брендинга. Дизайн, наружная реклама, полиграфия, фотосъёмка, digital. Полный цикл производства.">
+  <meta name="theme-color" content="#1C1C1C">
+  <title>CODE8 — Студия визуального брендинга</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <!-- Логотип + подпись -->
+      <a href="#" class="header__logo" aria-label="CODE8 — на главную">
+        <img src="assets/images/logo.svg" alt="CODE8" class="header__logo-img">
+        <span class="header__logo-tagline">СТУДИЯ ВИЗУАЛЬНОГО БРЕНДИНГА</span>
+      </a>
+      <!-- Контакты и бургер -->
+      <div class="header__actions">
+        <a href="tel:+79287780068" class="header__phone">+7 (928) 778-00-68</a>
+        <a href="#contact" class="btn btn--primary header__cta">Обсудить проект</a>
+        <button class="header__burger" id="burger" aria-label="Меню" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== НАВИГАЦИЯ (оверлей) ==================== -->
+  <nav class="header__nav" id="nav" aria-label="Основное меню">
+    <ul class="header__menu">
+      <li><a href="#services" class="header__link">Услуги</a></li>
+      <li><a href="#portfolio" class="header__link">Портфолио</a></li>
+      <li><a href="#process" class="header__link">Процесс</a></li>
+      <li><a href="#contact" class="header__link">Контакты</a></li>
+    </ul>
+    <!-- Соцсети в меню -->
+    <div class="header__menu-social">
+      <a href="#" class="contact__social-link">Telegram</a>
+      <a href="#" class="contact__social-link">VK</a>
+      <a href="#" class="contact__social-link">Behance</a>
+      <a href="#" class="contact__social-link">Max</a>
+    </div>
+  </nav>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+      <div class="container hero__inner">
+        <h1 class="hero__title">Мы создаём целостный образ бизнеса — онлайн и офлайн</h1>
+        <p class="hero__subtitle">Полный цикл производства: от концепции и дизайна до наружной рекламы, полиграфии и digital-продвижения. Работаем с брендами, которые хотят выглядеть дорого и профессионально.</p>
+        <div class="hero__actions">
+          <a href="#portfolio" class="btn btn--primary">Смотреть портфолио</a>
+          <a href="#contact" class="btn btn--outline">Рассчитать стоимость</a>
+        </div>
+      </div>
+      <!-- Фото с параллаксом -->
+      <div class="hero__image" id="heroImage">
+        <img src="assets/images/inna.png" alt="Inna" loading="eager">
+      </div>
+    </section>
+
+    <!-- ========== УСЛУГИ ========== -->
+    <section class="services section" id="services">
+      <div class="container">
+        <h2 class="section__title">Услуги</h2>
+        <div class="services__grid">
+          <article class="service-card">
+            <div class="service-card__icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <h3 class="service-card__title">Дизайн</h3>
+            <ul class="service-card__list">
+              <li>Фирменный стиль и айдентика</li>
+              <li>Логотипы и брендбуки</li>
+              <li>Упаковка и этикетка</li>
+              <li>UI/UX дизайн</li>
+            </ul>
+            <a href="#contact" class="service-card__link">Подробнее</a>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+            </div>
+            <h3 class="service-card__title">Наружная реклама</h3>
+            <ul class="service-card__list">
+              <li>Вывески и световые короба</li>
+              <li>Баннеры и сити-форматы</li>
+              <li>Штендеры и таблички</li>
+              <li>Оформление фасадов и витрин</li>
+            </ul>
+            <a href="#contact" class="service-card__link">Подробнее</a>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16"/><path d="M10 6v12"/></svg>
+            </div>
+            <h3 class="service-card__title">Полиграфия</h3>
+            <ul class="service-card__list">
+              <li>Визитки и бланки</li>
+              <li>Буклеты и каталоги</li>
+              <li>Плакаты и афиши</li>
+              <li>Сувенирная продукция</li>
+            </ul>
+            <a href="#contact" class="service-card__link">Подробнее</a>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            </div>
+            <h3 class="service-card__title">Фотосъёмка</h3>
+            <ul class="service-card__list">
+              <li>Предметная и продуктовая</li>
+              <li>Интерьерная и архитектурная</li>
+              <li>Промышленная съёмка</li>
+              <li>Репортажная съёмка</li>
+            </ul>
+            <a href="#contact" class="service-card__link">Подробнее</a>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <h3 class="service-card__title">Digital</h3>
+            <ul class="service-card__list">
+              <li>SMM и таргетированная реклама</li>
+              <li>Разработка сайтов и лендингов</li>
+              <li>Контент и копирайтинг</li>
+              <li>SEO и аналитика</li>
+            </ul>
+            <a href="#contact" class="service-card__link">Подробнее</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ПОРТФОЛИО ========== -->
+    <section class="portfolio section" id="portfolio">
+      <div class="container">
+        <h2 class="section__title">Портфолио</h2>
+        <!-- Фильтры-табы -->
+        <div class="portfolio__tabs" id="portfolioTabs">
+          <button class="portfolio__tab active" data-filter="all">Все</button>
+          <button class="portfolio__tab" data-filter="design">Дизайн</button>
+          <button class="portfolio__tab" data-filter="outdoor">Наружная</button>
+          <button class="portfolio__tab" data-filter="print">Полиграфия</button>
+          <button class="portfolio__tab" data-filter="photo">Фото</button>
+          <button class="portfolio__tab" data-filter="digital">Digital</button>
+        </div>
+        <!-- Сетка проектов -->
+        <div class="portfolio__grid" id="portfolioGrid">
+          <div class="portfolio__item" data-category="design">
+            <img src="assets/images/behance/logo-yours.webp" alt="Логотип YOURS" loading="lazy">
+            <div class="portfolio__overlay">
+              <span class="portfolio__item-title">Логотип YOURS</span>
+              <span class="portfolio__item-action">Смотреть кейс</span>
+            </div>
+          </div>
+          <div class="portfolio__item" data-category="outdoor">
+            <img src="assets/images/behance/billboard-design.jpg" alt="Дизайн билборда" loading="lazy">
+            <div class="portfolio__overlay">
+              <span class="portfolio__item-title">Наружная реклама</span>
+              <span class="portfolio__item-action">Смотреть кейс</span>
+            </div>
+          </div>
+          <div class="portfolio__item" data-category="print">
+            <img src="assets/images/behance/wine-map-bazar.webp" alt="Винная карта BAZAR" loading="lazy">
+            <div class="portfolio__overlay">
+              <span class="portfolio__item-title">Винная карта BAZAR</span>
+              <span class="portfolio__item-action">Смотреть кейс</span>
+            </div>
+          </div>
+          <div class="portfolio__item" data-category="photo">
+            <img src="assets/images/behance/organic-bar.jpg" alt="Продуктовый дизайн" loading="lazy">
+            <div class="portfolio__overlay">
+              <span class="portfolio__item-title">Продуктовая съёмка</span>
+              <span class="portfolio__item-action">Смотреть кейс</span>
+            </div>
+          </div>
+          <div class="portfolio__item" data-category="design">
+            <img src="assets/images/behance/charity-logo-sochi.webp" alt="Логотип фонда" loading="lazy">
+            <div class="portfolio__overlay">
+              <span class="portfolio__item-title">Логотип фонда</span>
+              <span class="portfolio__item-action">Смотреть кейс</span>
+            </div>
+          </div>
+          <div class="portfolio__item" data-category="digital">
+            <img src="assets/images/behance/kolibri-holidays.webp" alt="Колибри — организация праздников" loading="lazy">
+            <div class="portfolio__overlay">
+              <span class="portfolio__item-title">Колибри — Digital</span>
+              <span class="portfolio__item-action">Смотреть кейс</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ПРОЦЕСС ========== -->
+    <section class="process section" id="process">
+      <div class="container">
+        <h2 class="section__title">Процесс</h2>
+        <div class="process__timeline">
+          <div class="process__step">
+            <div class="process__step-num">01</div>
+            <div class="process__step-content">
+              <h3 class="process__step-title">Бриф</h3>
+              <p class="process__step-text">Знакомимся с вашим бизнесом, изучаем рынок и конкурентов. Фиксируем цели, сроки и бюджет.</p>
+            </div>
+          </div>
+          <div class="process__step">
+            <div class="process__step-num">02</div>
+            <div class="process__step-content">
+              <h3 class="process__step-title">Концепция</h3>
+              <p class="process__step-text">Разрабатываем 2–3 варианта концепции. Выбираем лучшее направление и утверждаем.</p>
+            </div>
+          </div>
+          <div class="process__step">
+            <div class="process__step-num">03</div>
+            <div class="process__step-content">
+              <h3 class="process__step-title">Производство</h3>
+              <p class="process__step-text">Реализуем проект от макетов до готовых материалов. Контролируем качество на каждом этапе.</p>
+            </div>
+          </div>
+          <div class="process__step">
+            <div class="process__step-num">04</div>
+            <div class="process__step-content">
+              <h3 class="process__step-title">Согласование</h3>
+              <p class="process__step-text">Вносим правки, утверждаем финальную версию. Вы получаете готовый продукт.</p>
+            </div>
+          </div>
+          <div class="process__step">
+            <div class="process__step-num">05</div>
+            <div class="process__step-content">
+              <h3 class="process__step-title">Запуск</h3>
+              <p class="process__step-text">Передаём материалы в печать или публикацию. Остаёмся на связи для поддержки.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== КОНТАКТЫ ========== -->
+    <section class="contact section" id="contact">
+      <div class="container">
+        <h2 class="section__title">Оставить заявку</h2>
+        <div class="contact__grid">
+          <!-- Форма -->
+          <form class="contact__form" id="contactForm" novalidate>
+            <div class="form__group">
+              <input type="text" id="name" name="name" class="form__input" placeholder=" " required>
+              <label for="name" class="form__label">Имя</label>
+            </div>
+            <div class="form__group">
+              <input type="tel" id="phone" name="phone" class="form__input" placeholder=" " required>
+              <label for="phone" class="form__label">Телефон</label>
+            </div>
+            <div class="form__group">
+              <select id="service" name="service" class="form__input form__select" required>
+                <option value="" disabled selected></option>
+                <option value="design">Дизайн</option>
+                <option value="outdoor">Наружная реклама</option>
+                <option value="print">Полиграфия</option>
+                <option value="photo">Фотосъёмка</option>
+                <option value="digital">Digital</option>
+              </select>
+              <label for="service" class="form__label">Услуга</label>
+            </div>
+            <div class="form__group">
+              <textarea id="message" name="message" class="form__input form__textarea" placeholder=" "></textarea>
+              <label for="message" class="form__label">Сообщение</label>
+            </div>
+            <button type="submit" class="btn btn--primary form__submit">Отправить</button>
+          </form>
+          <!-- Контактная информация -->
+          <div class="contact__info">
+            <h3 class="contact__heading">Контакты</h3>
+            <p><a href="tel:+79287780068">+7 (928) 778-00-68</a></p>
+            <p>hello@code8.agency</p>
+            <div class="contact__social">
+              <a href="#" class="contact__social-link">Telegram</a>
+              <a href="#" class="contact__social-link">VK</a>
+              <a href="#" class="contact__social-link">Behance</a>
+              <a href="#" class="contact__social-link">Max</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== КНОПКА НАВЕРХ ==================== -->
+  <button class="totop" id="totop" aria-label="Наверх">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <img src="assets/images/logo.svg" alt="CODE8" class="footer__logo-img">
+          <span class="footer__logo-tagline">СТУДИЯ ВИЗУАЛЬНОГО БРЕНДИНГА</span>
+        </div>
+      </div>
+      <nav class="footer__nav" aria-label="Дополнительное меню">
+        <a href="#services">Услуги</a>
+        <a href="#portfolio">Портфолио</a>
+        <a href="#process">Процесс</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+      <div class="footer__social">
+        <a href="#" class="contact__social-link">Telegram</a>
+        <a href="#" class="contact__social-link">VK</a>
+        <a href="#" class="contact__social-link">Behance</a>
+        <a href="#" class="contact__social-link">Max</a>
+      </div>
+      <p class="footer__copy">&copy; 2024 CODE8. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

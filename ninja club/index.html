@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Club — Нефтеюганск | Открытие 15.09.2026</title>
+    <meta name="description" content="Детский спортивный клуб Ninja Club в Нефтеюганске. OCR и ниндзя-трассы для детей 4-14 лет. Безопасная сертифицированная методика. Запишись на пробное занятие!">
+    <meta property="og:title" content="Ninja Club — Нефтеюганск">
+    <meta property="og:description" content="Детский спортивный клуб с трассами препятствий. Открытие 15.09.2026.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ninja-club.ru">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { DEFAULT: '#111111', light: '#2a2a2a' },
+                        accent: { DEFAULT: '#E63946', dark: '#c92e3a' },
+                        bg: { DEFAULT: '#F5F5F7' },
+                        gold: { DEFAULT: '#FFD166', dark: '#f0c050' },
+                    },
+                    fontFamily: {
+                        heading: ['"Russo One"', 'sans-serif'],
+                        body: ['Manrope', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ===== STICKY HEADER ===== -->
+    <header class="sticky-header fixed top-0 left-0 right-0 z-50 py-3 px-4 md:px-8 transition-all duration-300">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 no-underline">
+                <span class="text-xl md:text-2xl" style="font-family:'Russo One',sans-serif; color:#E63946;">NINJA</span>
+                <span class="text-lg md:text-xl text-white/80 hidden sm:inline" style="font-family:'Russo One',sans-serif;">CLUB</span>
+                <span class="text-sm md:text-base font-semibold text-white/80 hidden sm:inline">|</span>
+                <span class="text-sm md:text-base text-white/60 hidden sm:inline">Нефтеюганск</span>
+            </a>
+            <a href="#form" class="btn-primary text-sm !py-2 !px-4 md:!py-2.5 md:!px-5">Записаться</a>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero-bg min-h-screen flex items-center section-padding pt-24 relative">
+        <div class="max-w-6xl mx-auto w-full relative z-10">
+            <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+                <!-- Left content -->
+                <div class="text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/60 text-xs tracking-widest uppercase mb-6">
+                        Открытие 15 сентября 2026
+                    </div>
+
+                    <h1 class="heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight text-white">
+                        <span class="brush-underline">NINJA</span><br>
+                        <span class="text-[#E63946]">CLUB</span>
+                        <span class="text-white/90">Нефтеюганск</span>
+                    </h1>
+
+                    <p class="text-lg md:text-xl text-white/70 mt-5 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+                        Безопасные препятствия → реальные навыки. Первый клуб OCR и ниндзя-трасс для детей 4–14 лет в Нефтеюганске.
+                    </p>
+
+                    <!-- Countdown -->
+                    <div class="mt-8">
+                        <p class="text-white/40 text-xs uppercase tracking-widest mb-3">До открытия осталось</p>
+                        <div class="flex gap-2 sm:gap-3 justify-center lg:justify-start" id="timer">
+                            <div class="timer-item"><div class="num" id="timer-days">00</div><div class="label">Дней</div></div>
+                            <div class="timer-item"><div class="num" id="timer-hours">00</div><div class="label">Часов</div></div>
+                            <div class="timer-item"><div class="num" id="timer-minutes">00</div><div class="label">Минут</div></div>
+                            <div class="timer-item"><div class="num" id="timer-seconds">00</div><div class="label">Секунд</div></div>
+                        </div>
+                    </div>
+
+                    <!-- Spots left -->
+                    <div class="mt-5 flex items-center gap-3 justify-center lg:justify-start">
+                        <span class="spots-counter" id="spots-display">Осталось 50 мест со скидкой 30%</span>
+                    </div>
+
+                    <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                        <a href="#form" class="btn-primary btn-pulse text-lg">Записаться на пробное</a>
+                        <a href="#about" class="btn-outline text-lg">Узнать больше</a>
+                    </div>
+                </div>
+
+                <!-- Right visual -->
+                <div class="hidden lg:flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <img
+                            src="image/1780140565bd9f.png"
+                            alt="european kids doing ninja warrior obstacle course in modern bright gym with colorful mats and ropes"
+                            class="w-full rounded-2xl shadow-2xl object-cover"
+                            style="aspect-ratio:1/1;"
+                            loading="lazy"
+                        >
+                        <div class="absolute -bottom-4 -left-4 glass-card-dark px-5 py-3">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">🏆</span>
+                                <div>
+                                    <p class="text-white font-bold text-sm">Сертифицированная</p>
+                                    <p class="text-white/50 text-xs">методика OCR</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -top-4 -right-4 glass-card-dark px-4 py-2.5">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-[#FFD166]"></span>
+                                <span class="text-white/70 text-sm font-semibold">4–14 лет</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#F5F5F7] to-transparent pointer-events-none"></div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="section-padding">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1">
+                    <img
+                        src="image/1780140736c07f.png"
+                        alt="european coach spotting a child on obstacle course rope in modern gym with safety mats"
+                        class="w-full rounded-2xl shadow-lg object-cover"
+                        style="aspect-ratio:1/1;"
+                        loading="lazy"
+                    >
+                </div>
+                <div class="order-1 lg:order-2">
+                    <h2 class="heading text-3xl md:text-4xl lg:text-5xl mb-6">
+                        <span class="brush-underline">Что такое</span><br>
+                        <span class="text-[#E63946]">Ninja Club</span>
+                        <span class="text-[#111]">?</span>
+                    </h2>
+                    <div class="obstacle-line mb-6"></div>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-5">
+                        Не просто спорт, а система развития координации, силы и дисциплины. Наши трассы — это безопасная среда, где каждый ребёнок учится преодолевать препятствия, работать в команде и верить в свои силы.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#E63946] text-xl mt-0.5">✓</span>
+                            <span class="text-gray-600">Сертифицированная методика Федерации OCR России</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#E63946] text-xl mt-0.5">✓</span>
+                            <span class="text-gray-600">Профессиональное мягкое покрытие и страховка</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#E63946] text-xl mt-0.5">✓</span>
+                            <span class="text-gray-600">Малые группы до [УТОЧНИТЬ] человек</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROGRAMS ===== -->
+    <section id="programs" class="section-padding bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="heading text-3xl md:text-4xl lg:text-5xl mb-4">
+                    Программы <span class="text-[#E63946]">по возрастам</span>
+                </h2>
+                <div class="obstacle-line max-w-xs"></div>
+                <p class="text-gray-500 mt-4 max-w-xl mx-auto">Адаптированные нагрузки под физиологические особенности каждого возраста</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- 4–6 years -->
+                <div class="program-card">
+                    <div class="w-14 h-14 rounded-2xl bg-[#FFD166]/20 flex items-center justify-center text-2xl mb-5">🧸</div>
+                    <span class="text-xs font-bold tracking-widest text-[#E63946] uppercase">4–6 лет</span>
+                    <h3 class="heading text-xl mt-2 mb-3">Игровая моторика</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Базовая координация, знакомство с препятствиями через игру. Развитие ловкости, равновесия и интереса к спорту.
+                    </p>
+                    <ul class="mt-4 space-y-2 text-sm text-gray-500">
+                        <li class="flex items-start gap-2">• Мягкие модульные трассы</li>
+                        <li class="flex items-start gap-2">• Упражнения на баланс</li>
+                        <li class="flex items-start gap-2">• Групповые игры</li>
+                    </ul>
+                </div>
+
+                <!-- 7–10 years -->
+                <div class="program-card border-t-4 border-t-[#E63946]">
+                    <div class="w-14 h-14 rounded-2xl bg-[#E63946]/10 flex items-center justify-center text-2xl mb-5">🏃</div>
+                    <span class="text-xs font-bold tracking-widest text-[#E63946] uppercase">7–10 лет</span>
+                    <h3 class="heading text-xl mt-2 mb-3">База OCR / Ninja</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Преодоление страха высоты, работа с канатами, кольцами и турниками. Освоение техники прохождения препятствий.
+                    </p>
+                    <ul class="mt-4 space-y-2 text-sm text-gray-500">
+                        <li class="flex items-start gap-2">• Высотные элементы со страховкой</li>
+                        <li class="flex items-start gap-2">• Канаты и перекладины</li>
+                        <li class="flex items-start gap-2">• Дорожка препятствий</li>
+                    </ul>
+                </div>
+
+                <!-- 11–14 years -->
+                <div class="program-card">
+                    <div class="w-14 h-14 rounded-2xl bg-[#E63946]/10 flex items-center justify-center text-2xl mb-5">💪</div>
+                    <span class="text-xs font-bold tracking-widest text-[#E63946] uppercase">11–14 лет</span>
+                    <h3 class="heading text-xl mt-2 mb-3">Техника и выносливость</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Полноценные трассы OCR, техника прохождения, командная работа, подготовка к соревнованиям регионального уровня.
+                    </p>
+                    <ul class="mt-4 space-y-2 text-sm text-gray-500">
+                        <li class="flex items-start gap-2">• Полоса препятствий 150+ м</li>
+                        <li class="flex items-start gap-2">• Командные эстафеты</li>
+                        <li class="flex items-start gap-2">• Подготовка к забегам OCR</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <p class="text-gray-400 text-sm mb-4">* Точное расписание и стоимость — уточняйте при записи</p>
+                <a href="#form" class="btn-primary">Записаться на пробное</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHY PARENTS ===== -->
+    <section id="benefits" class="section-padding">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="heading text-3xl md:text-4xl lg:text-5xl mb-4">
+                    Почему <span class="text-[#E63946]">родители выбирают</span> нас
+                </h2>
+                <div class="obstacle-line max-w-xs"></div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5">
+
+                <div class="glass-card p-6 flex items-start gap-4">
+                    <div class="benefit-icon" style="background:rgba(230,57,70,0.1);">🛡️</div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">Безопасность превыше всего</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Сертифицированное мягкое покрытие под всеми элементами, обязательная страховка тренером при отработке новых навыков.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 flex items-start gap-4">
+                    <div class="benefit-icon" style="background:rgba(255,209,102,0.2);">📋</div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">Научная методика</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Нагрузки адаптированы под возраст 4–6, 7–10, 11–14 лет. Программа соответствует стандартам Федерации OCR ХМАО-Югры.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 flex items-start gap-4">
+                    <div class="benefit-icon" style="background:rgba(230,57,70,0.1);">🤝</div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">Атмосфера поддержки</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Уважение, взаимо­помощь, отсутствие буллинга. Каждый ребёнок движется в своём темпе.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 flex items-start gap-4">
+                    <div class="benefit-icon" style="background:rgba(255,209,102,0.2);">⭐</div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">Система достижений</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Открытые уроки для родителей, трекинг прогресса, бейджи и пояса за пройденные уровни.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SAFETY & METHODOLOGY (OCR Standards) ===== -->
+    <section id="safety" class="section-padding" style="background:#111;">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="heading text-3xl md:text-4xl lg:text-5xl mb-4 text-white">
+                    Безопасность и <span class="text-[#FFD166]">методика</span>
+                </h2>
+                <div class="obstacle-line max-w-xs"></div>
+                <p class="text-white/40 mt-4">Работаем по стандартам Федерации гонок с препятствиями ХМАО-Югры</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-10">
+
+                <div class="glass-card-dark p-6 md:p-8">
+                    <div class="flex items-start gap-4">
+                        <span class="safety-number">01</span>
+                        <div>
+                            <h3 class="text-white font-bold text-lg mb-2">Сертифицированное оборудование</h3>
+                            <p class="text-white/50 text-sm leading-relaxed">
+                                Все трассы и препятствия соответствуют нормам Федерации OCR России. Наличие мягкого покрытия (маты, татами) под всеми высотными элементами обязательно.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card-dark p-6 md:p-8">
+                    <div class="flex items-start gap-4">
+                        <span class="safety-number">02</span>
+                        <div>
+                            <h3 class="text-white font-bold text-lg mb-2">Страховка тренером</h3>
+                            <p class="text-white/50 text-sm leading-relaxed">
+                                Обязательная страховка при отработке новых элементов. Тренер находится рядом на каждом этапе, контролируя технику выполнения.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card-dark p-6 md:p-8">
+                    <div class="flex items-start gap-4">
+                        <span class="safety-number">03</span>
+                        <div>
+                            <h3 class="text-white font-bold text-lg mb-2">Возрастная сегрегация</h3>
+                            <p class="text-white/50 text-sm leading-relaxed">
+                                Адаптация препятствий под физиологические особенности детей 4–6, 7–10, 11–14 лет. Исключены травмоопасные элементы без предварительной подготовки.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card-dark p-6 md:p-8">
+                    <div class="flex items-start gap-4">
+                        <span class="safety-number">04</span>
+                        <div>
+                            <h3 class="text-white font-bold text-lg mb-2">Госстандарты и аккредитация</h3>
+                            <p class="text-white/50 text-sm leading-relaxed">
+                                Клуб — часть экосистемы РОО «Федерация Гонок с Препятствиями ХМАО-Югры» (ОГРН 1268600000855). Соответствуем приоритетам Департамента спорта региона.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="glass-card-dark p-6 md:p-8 max-w-3xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+                    <div class="flex-shrink-0">
+                        <span class="text-4xl">🏅</span>
+                    </div>
+                    <div>
+                        <p class="text-white/80 text-sm leading-relaxed">
+                            Ninja Club является частью экосистемы OCR в регионе. Ежегодные мероприятия: <strong class="text-white">«Стальной характер»</strong> (Ханты-Мансийск, Сургут), <strong class="text-white">«Гонка молодых»</strong> (Ханты-Мансийск, 5,5 км, 16 препятствий), <strong class="text-white">«Арктический забег в Югре»</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FORM SECTION ===== -->
+    <section id="form" class="section-padding">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="heading text-3xl md:text-4xl lg:text-5xl mb-4">
+                    Ранняя <span class="text-[#E63946]">запись</span>
+                </h2>
+                <div class="obstacle-line max-w-xs"></div>
+                <p class="text-gray-500 mt-4 max-w-lg mx-auto">Оставьте заявку до открытия и получите скидку 30% на первый абонемент</p>
+                <div class="mt-4 flex justify-center">
+                    <span class="spots-counter" id="spots-display-form">Осталось 50 мест со скидкой 30%</span>
+                </div>
+            </div>
+
+            <div class="glass-card max-w-lg mx-auto p-6 md:p-8">
+                <!-- Form -->
+                <div class="form-state visible" id="form-state">
+                    <form id="lead-form" novalidate>
+                        <div class="space-y-5">
+                            <!-- Name -->
+                            <div>
+                                <label for="parent-name" class="block text-sm font-semibold text-gray-700 mb-1.5">Имя родителя</label>
+                                <input
+                                    type="text"
+                                    id="parent-name"
+                                    name="name"
+                                    class="form-input"
+                                    placeholder="Например, Анна"
+                                    required
+                                    autocomplete="name"
+                                >
+                                <div class="form-error" id="name-error">Пожалуйста, введите имя</div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div>
+                                <label for="parent-phone" class="block text-sm font-semibold text-gray-700 mb-1.5">Телефон</label>
+                                <input
+                                    type="tel"
+                                    id="parent-phone"
+                                    name="phone"
+                                    class="form-input"
+                                    placeholder="+7 (___) ___-__-__"
+                                    required
+                                    autocomplete="tel"
+                                >
+                                <div class="form-error" id="phone-error">Пожалуйста, введите корректный номер телефона</div>
+                            </div>
+
+                            <!-- Child age -->
+                            <div>
+                                <label for="child-age" class="block text-sm font-semibold text-gray-700 mb-1.5">Возраст ребёнка</label>
+                                <select id="child-age" name="age" class="form-input" required>
+                                    <option value="" disabled selected>Выберите возраст</option>
+                                    <option value="4">4 года</option>
+                                    <option value="5">5 лет</option>
+                                    <option value="6">6 лет</option>
+                                    <option value="7">7 лет</option>
+                                    <option value="8">8 лет</option>
+                                    <option value="9">9 лет</option>
+                                    <option value="10">10 лет</option>
+                                    <option value="11">11 лет</option>
+                                    <option value="12">12 лет</option>
+                                    <option value="13">13 лет</option>
+                                    <option value="14">14 лет</option>
+                                </select>
+                                <div class="form-error" id="age-error">Пожалуйста, выберите возраст ребёнка</div>
+                            </div>
+
+                            <!-- Consent -->
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="consent" class="checkbox-custom mt-0.5" required>
+                                <label for="consent" class="text-sm text-gray-500 leading-relaxed cursor-pointer select-none">
+                                    Соглашаюсь на
+                                    <a href="#" class="text-[#E63946] underline hover:no-underline">обработку персональных данных</a>
+                                    и принимаю условия
+                                    <a href="#" class="text-[#E63946] underline hover:no-underline">акции</a>
+                                </label>
+                            </div>
+                            <div class="form-error" id="consent-error" style="margin-top:-8px;">Необходимо согласие на обработку данных</div>
+
+                            <button type="submit" class="btn-primary w-full text-lg" id="submit-btn">
+                                Записаться на пробное
+                            </button>
+
+                            <p class="text-xs text-center text-gray-400 mt-4">
+                                Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Success -->
+                <div class="success-state" id="success-state">
+                    <div class="text-5xl mb-4">🎉</div>
+                    <h3 class="heading text-2xl mb-2">Заявка принята!</h3>
+                    <p class="text-gray-500 mb-6">Мы свяжемся с вами после открытия клуба. Скидка 30% закреплена за вами.</p>
+                    <button onclick="resetForm()" class="btn-outline !text-[#111] !border-gray-300 hover:!border-[#E63946]">
+                        Отправить ещё заявку
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer style="background:#111;">
+        <div class="max-w-6xl mx-auto px-4 py-12">
+            <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
+
+                <div class="sm:col-span-2 md:col-span-1">
+                    <span class="text-2xl" style="font-family:'Russo One',sans-serif; color:#E63946;">NINJA CLUB</span>
+                    <p class="text-white/30 text-sm mt-2 leading-relaxed">
+                        Первый клуб OCR и ниндзя-трасс для детей в Нефтеюганске.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-4">Навигация</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="footer-link">О клубе</a></li>
+                        <li><a href="#programs" class="footer-link">Программы</a></li>
+                        <li><a href="#benefits" class="footer-link">Преимущества</a></li>
+                        <li><a href="#safety" class="footer-link">Безопасность</a></li>
+                        <li><a href="#form" class="footer-link">Запись</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-4">Документы</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="footer-link">Политика конфиденциальности</a></li>
+                        <li><a href="#" class="footer-link">Условия акции</a></li>
+                        <li><a href="#" class="footer-link">Договор оферты</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-4">Контакты</h4>
+                    <ul class="space-y-2">
+                        <li><span class="footer-link">г. Нефтеюганск</span></li>
+                        <li><a href="tel:+79129056236" class="footer-link">+7 (912) 905-62-36</a></li>
+                        <li><a href="mailto:fedocrhmao@mail.ru" class="footer-link">fedocrhmao@mail.ru</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="border-t border-white/5 mt-10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-white/20 text-xs">
+                    &copy; 2026 Ninja Club — Нефтеюганск. РОО «Федерация Гонок с Препятствиями ХМАО-Югры».
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="footer-link text-xs" aria-label="VK">VK</a>
+                    <a href="#" class="footer-link text-xs" aria-label="Telegram">Telegram</a>
+                    <a href="#" class="footer-link text-xs" aria-label="YouTube">YouTube</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== VK PIXEL (placeholder) ===== -->
+    <script>
+        // VK Pixel
+        // (function(d, w, c) { ... })(document, window, 'VK');
+        // vkPixelCode = 'YOUR_PIXEL_CODE';
+    </script>
+
+    <!-- ===== YANDEX METRICA (placeholder) ===== -->
+    <script>
+        // Yandex.Metrica
+        // (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        // m[i].l=1*new Date(); for (var j = 0; j < document.scripts.length; j++) { ... }
+        // })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+        // ym(YOUR_COUNTER_ID, 'init', { defer: true });
+        // ym(YOUR_COUNTER_ID, 'reachGoal', 'form_submit');
+    </script>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
