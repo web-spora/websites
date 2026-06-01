@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Портфолио | Веб-сайты на HTML, CSS, JS</title>
+    <meta name="description" content="Портфолио веб-сайтов на чистом HTML, CSS и JS. Быстро, надёжно, доступно. Проекты: Пиво Да Пиво, Code8, Ninja-Club, OCR-Ugra.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #faf9f8;
+            color: #1a1a1a;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+            padding: 2rem 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            body {
+                padding: 3rem 1.5rem;
+            }
+            .container {
+                padding: 2.5rem;
+            }
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #2c7a4d;
+            border-left: 4px solid #2c7a4d;
+            padding-left: 1rem;
+            margin: 1rem 0 1.5rem 0;
+        }
+
+        .intro {
+            font-size: 1rem;
+            color: #2c3e2f;
+            background: #f0f7f2;
+            padding: 1.2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin: 2rem 0 1.2rem 0;
+            padding-bottom: 0.3rem;
+            border-bottom: 2px solid #e6e4e2;
+        }
+
+        .project {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eeebe7;
+        }
+
+        .project:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .project h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .project h3 a {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1e4a3b;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .project h3 a:hover {
+            color: #0f2e24;
+            border-bottom-color: #2c7a4d;
+        }
+
+        .project p {
+            color: #2b3b2c;
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #7c7a77;
+            border-top: 1px solid #e9e6e2;
+        }
+
+        .repo-link {
+            display: inline-block;
+            margin-top: 0.75rem;
+            color: #2c7a4d;
+            text-decoration: none;
+            border-bottom: 1px dotted #b8cfb0;
+            transition: color 0.2s ease;
+        }
+
+        .repo-link:hover {
+            color: #1b5437;
+            border-bottom-color: #1b5437;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #121212;
+                color: #ededee;
+            }
+            .container {
+                background: #1e1e1e;
+                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            }
+            .tagline {
+                color: #6fbf4c;
+                border-left-color: #6fbf4c;
+            }
+            .intro {
+                background: #252a24;
+                color: #e2f0e3;
+            }
+            .project p {
+                color: #cbdccd;
+            }
+            .project h3 a {
+                color: #87cfb0;
+            }
+            .project h3 a:hover {
+                color: #afe6cb;
+            }
+            footer {
+                border-top-color: #2c2c2c;
+                color: #9a9a9a;
+            }
+            .repo-link {
+                color: #87cfb0;
+            }
+            .repo-link:hover {
+                color: #b5e6cc;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+            .tagline {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Портфолио веб-сайтов</h1>
+        <div class="tagline">Чистый код. Молниеносный отклик. Честная цена.</div>
+        <div class="intro">
+            Добро пожаловать в моё портфолио. Это проекты, сделанные на «чистом» стеке (HTML, CSS, JS) без лишних зависимостей. Они не глючат, не тормозят и не требуют постоянных доработок. Просто работают.
+        </div>
+
+        <h2>Проекты</h2>
+
+        <div class="project">
+            <h3><a href="https://web-spora.github.io/websites/pivo-da-pivo/" target="_blank" rel="noopener noreferrer">Пиво Да Пиво</a></h3>
+            <p>Интернет-меню сети магазинов «Пиво Да Пиво» с возможностью оформления заказа. Проект демонстрирует каталог товаров, фильтрацию, форму заказа и полную адаптивность.</p>
+        </div>
+
+        <div class="project">
+            <h3><a href="https://web-spora.github.io/websites/code8/" target="_blank" rel="noopener noreferrer">Code8</a></h3>
+            <p>Портфолио студии дизайна. Проект демонстрирует галерею работ, презентацию услуг и лаконичный современный дизайн, подчёркивающий визуальный стиль студии.</p>
+        </div>
+
+        <div class="project">
+            <h3><a href="https://web-spora.github.io/websites/ninja-club/" target="_blank" rel="noopener noreferrer">Ninja-Club</a></h3>
+            <p>Лендинг клуба по ниндзя-спорту (OCR). Проект содержит информацию о тренировках, расписание, преимущества клуба и форму записи на пробное занятие.</p>
+        </div>
+
+        <div class="project">
+            <h3><a href="https://web-spora.github.io/websites/ocr-ugra/" target="_blank" rel="noopener noreferrer">OCR-Ugra</a></h3>
+            <p>Сайт Федерации гонок с препятствиями в ХМАО — Югра. Официально зарегистрированная региональная общественная организация, созданная для развития гонок с препятствиями в ХМАО-Югре. Проект содержит информацию о федерации, календарь соревнований, новости и контакты.</p>
+        </div>
+
+        <footer>
+            <div>Репозиторий обновляется по мере добавления новых проектов.</div>
+            <a href="https://github.com/web-spora/websites/tree/main" class="repo-link" target="_blank" rel="noopener noreferrer">📁 Исходный код всех проектов на GitHub →</a>
+        </footer>
+    </div>
+</body>
+</html>
