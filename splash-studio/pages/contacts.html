@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Контакты студии БРЫЗГИ — свяжитесь с нами" />
+  <title>Контакты — БРЫЗГИ</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+  <script>document.documentElement.classList.add('js');</script>
+  <noscript><style>.reveal,.reveal-left,.reveal-right,.reveal-scale{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="logo">БРЫЗГИ</a>
+        <ul class="nav__list" data-nav>
+          <li><a href="/#about">Кто мы</a></li>
+          <li><a href="/#services">Что делаем</a></li>
+          <li><a href="/#process">Процесс</a></li>
+          <li><a href="/#reviews">Отзывы</a></li>
+          <li><a href="/#pricing">Цены</a></li>
+          <li><a href="/#footer" class="nav__cta">Начать</a></li>
+        </ul>
+        <button class="nav__toggle" data-nav-toggle aria-label="Меню">
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="min-height: 60vh;">
+      <div class="hero__bg">
+        <div class="hero__bg-layer"></div>
+        <div class="hero__bg-layer"></div>
+        <div class="hero__bg-layer"></div>
+      </div>
+      <div class="hero__content">
+        <h1 class="hero__title"><span>Контакты</span></h1>
+        <p class="hero__subtitle">
+          Свяжитесь с нами — и мы вместе раскрасим ваш следующий проект
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap-xl);">
+          <div class="reveal">
+            <h2 class="section__title" style="text-align: left;">Напишите нам</h2>
+            <div style="display: flex; flex-direction: column; gap: var(--gap-lg); margin-top: var(--gap-lg);">
+              <div style="display: flex; align-items: center; gap: var(--gap-md); padding: var(--gap-md); background: var(--color-card); border: 1px solid var(--color-card-border); border-radius: var(--radius-md);">
+                <span style="font-size: 1.5rem;">📧</span>
+                <div>
+                  <div style="font-weight: 600;">Email</div>
+                  <a href="mailto:hello@splash.studio" style="color: var(--color-text-muted);">hello@splash.studio</a>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--gap-md); padding: var(--gap-md); background: var(--color-card); border: 1px solid var(--color-card-border); border-radius: var(--radius-md);">
+                <span style="font-size: 1.5rem;">📞</span>
+                <div>
+                  <div style="font-weight: 600;">Телефон</div>
+                  <a href="tel:+79991234567" style="color: var(--color-text-muted);">+7 (999) 123-45-67</a>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: var(--gap-md); padding: var(--gap-md); background: var(--color-card); border: 1px solid var(--color-card-border); border-radius: var(--radius-md);">
+                <span style="font-size: 1.5rem;">💬</span>
+                <div>
+                  <div style="font-weight: 600;">Telegram</div>
+                  <a href="#" style="color: var(--color-text-muted);">@splash_studio</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal" style="aspect-ratio: 3/4; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--color-card-border); background: linear-gradient(135deg, rgba(255,0,110,0.05), rgba(0,180,216,0.05)); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: var(--gap-xl); text-align: center;">
+            <span style="font-size: 5rem; margin-bottom: var(--gap-lg);">🌟</span>
+            <p style="font-size: 1.2rem; font-weight: 600; margin-bottom: var(--gap-sm);">Ждём вас!</p>
+            <p style="color: var(--color-text-muted);">Приходите знакомиться — кофе и вдохновение за наш счёт</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer section" id="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">БРЫЗГИ</div>
+          <p class="footer__desc">Студия ярких впечатлений. Раскрашиваем жизнь с 2023 года.</p>
+        </div>
+        <div>
+          <div class="footer__heading">Навигация</div>
+          <div class="footer__links">
+            <a href="/#about">Кто мы</a>
+            <a href="/#services">Что делаем</a>
+            <a href="/#process">Процесс</a>
+            <a href="/#pricing">Цены</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__heading">Контакты</div>
+          <div class="footer__links">
+            <a href="mailto:hello@splash.studio">hello@splash.studio</a>
+            <a href="tel:+79991234567">+7 (999) 123-45-67</a>
+            <a href="#">Telegram</a>
+            <a href="#">Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 БРЫЗГИ. Все права защищены</span>
+        <span>Политика конфиденциальности</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/scripts/main.js"></script>
+</body>
+</html>

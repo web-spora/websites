@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="О студии БРЫЗГИ — команда ярких впечатлений" />
+  <title>О нас — БРЫЗГИ</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+  <script>document.documentElement.classList.add('js');</script>
+  <noscript><style>.reveal,.reveal-left,.reveal-right,.reveal-scale{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="logo">БРЫЗГИ</a>
+        <ul class="nav__list" data-nav>
+          <li><a href="/#about">Кто мы</a></li>
+          <li><a href="/#services">Что делаем</a></li>
+          <li><a href="/#process">Процесс</a></li>
+          <li><a href="/#reviews">Отзывы</a></li>
+          <li><a href="/#pricing">Цены</a></li>
+          <li><a href="/#footer" class="nav__cta">Начать</a></li>
+        </ul>
+        <button class="nav__toggle" data-nav-toggle aria-label="Меню">
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="min-height: 60vh;">
+      <div class="hero__bg">
+        <div class="hero__bg-layer"></div>
+        <div class="hero__bg-layer"></div>
+        <div class="hero__bg-layer"></div>
+      </div>
+      <div class="hero__content">
+        <h1 class="hero__title">О студии <span>БРЫЗГИ</span></h1>
+        <p class="hero__subtitle">
+          Мы — команда бесконечно влюблённых в своё дело. Каждый из нас —
+          отдельная вселенная, но вместе мы создаём галактики
+        </p>
+        <div class="hero__actions">
+          <a href="/#services" class="btn btn--primary btn--large">Что мы делаем</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap-xl); align-items: center;">
+          <div class="reveal">
+            <h2 class="section__title" style="text-align: left;">Наша философия</h2>
+            <p style="color: var(--color-text-muted); font-size: 1.05rem; line-height: 1.8;">
+              Мы верим, что творчество — это не роскошь, а необходимость.
+              Каждый проект для нас — это полотно, на котором мы смешиваем
+              яркие краски эмоций, технологий и искусства.
+            </p>
+            <p style="color: var(--color-text-muted); font-size: 1.05rem; line-height: 1.8;">
+              Родившись в 2023 году как маленькая студия, сегодня БРЫЗГИ —
+              это сообщество талантливых людей, создающих впечатления,
+              которые остаются с вами навсегда.
+            </p>
+          </div>
+          <div class="reveal-scale" style="aspect-ratio: 1; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--color-card-border); background: var(--color-card); display: flex; align-items: center; justify-content: center; font-size: 6rem;">
+            🎨
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--color-bg-alt);">
+      <div class="container">
+        <h2 class="section__title reveal">Команда</h2>
+        <p class="section__subtitle reveal">Мы — разноцветные брызги одного большого полотна</p>
+        <div class="about__grid">
+          <div class="about__figure reveal" style="transition-delay: 0.1s">
+            <div class="about__figure-shape"></div>
+            <span class="about__figure-label">Креатив</span>
+          </div>
+          <div class="about__figure reveal" style="transition-delay: 0.2s">
+            <div class="about__figure-shape"></div>
+            <span class="about__figure-label">Дизайн</span>
+          </div>
+          <div class="about__figure reveal" style="transition-delay: 0.3s">
+            <div class="about__figure-shape"></div>
+            <span class="about__figure-label">Разработка</span>
+          </div>
+          <div class="about__figure reveal" style="transition-delay: 0.4s">
+            <div class="about__figure-shape"></div>
+            <span class="about__figure-label">Магия</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer section" id="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">БРЫЗГИ</div>
+          <p class="footer__desc">Студия ярких впечатлений. Раскрашиваем жизнь с 2023 года.</p>
+        </div>
+        <div>
+          <div class="footer__heading">Навигация</div>
+          <div class="footer__links">
+            <a href="/#about">Кто мы</a>
+            <a href="/#services">Что делаем</a>
+            <a href="/#process">Процесс</a>
+            <a href="/#pricing">Цены</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__heading">Контакты</div>
+          <div class="footer__links">
+            <a href="mailto:hello@splash.studio">hello@splash.studio</a>
+            <a href="tel:+79991234567">+7 (999) 123-45-67</a>
+            <a href="#">Telegram</a>
+            <a href="#">Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 БРЫЗГИ. Все права защищены</span>
+        <span>Политика конфиденциальности</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/scripts/main.js"></script>
+</body>
+</html>

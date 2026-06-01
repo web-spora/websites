@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="БРЫЗГИ — Твоя жизнь — твое полотно. Раскрась её прямо сейчас" />
+  <title>БРЫЗГИ / SPLASH — студия ярких впечатлений</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+  <script>document.documentElement.classList.add('js');</script>
+  <noscript><style>.reveal,.reveal-left,.reveal-right,.reveal-scale,.process__step{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="logo">БРЫЗГИ</a>
+        <ul class="nav__list" data-nav>
+          <li><a href="#about">Кто мы</a></li>
+          <li><a href="#services">Что делаем</a></li>
+          <li><a href="#process">Процесс</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#pricing">Цены</a></li>
+          <li><a href="#footer" class="nav__cta">Начать</a></li>
+        </ul>
+        <button class="nav__toggle" data-nav-toggle aria-label="Меню">
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero__bg">
+      <div class="hero__bg-layer"></div>
+      <div class="hero__bg-layer"></div>
+      <div class="hero__bg-layer"></div>
+    </div>
+    <canvas class="hero__canvas" id="heroCanvas"></canvas>
+    <div class="hero__droplet" id="droplet">
+      <div class="hero__droplet-inner"></div>
+    </div>
+    <div class="hero__content">
+      <div class="hero__badge">✦ Твоя жизнь — твое полотно</div>
+      <h1 class="hero__title">
+        Раскрась её<br>
+        <span>прямо сейчас</span>
+      </h1>
+      <p class="hero__subtitle">
+        Студия ярких впечатлений, где каждый мазок — эмоция,
+        а каждый проект — взрыв цвета
+      </p>
+      <div class="hero__actions">
+        <a href="#services" class="btn btn--primary btn--large">Начать творить</a>
+        <a href="#about" class="btn btn--secondary btn--large">Узнать больше</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about section" id="about">
+    <div class="container">
+      <h2 class="section__title reveal">Кто мы</h2>
+      <p class="section__subtitle reveal">
+        Мы — команда бесконечно влюблённых в своё дело. Каждый из нас —
+        отдельная вселенная, но вместе мы создаём галактики
+      </p>
+      <div class="about__grid">
+        <div class="about__figure reveal" style="transition-delay: 0.1s">
+          <div class="about__figure-shape"></div>
+          <span class="about__figure-label">Креатив</span>
+        </div>
+        <div class="about__figure reveal" style="transition-delay: 0.2s">
+          <div class="about__figure-shape"></div>
+          <span class="about__figure-label">Дизайн</span>
+        </div>
+        <div class="about__figure reveal" style="transition-delay: 0.3s">
+          <div class="about__figure-shape"></div>
+          <span class="about__figure-label">Разработка</span>
+        </div>
+        <div class="about__figure reveal" style="transition-delay: 0.4s">
+          <div class="about__figure-shape"></div>
+          <span class="about__figure-label">Магия</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="services section" id="services">
+    <div class="container">
+      <h2 class="section__title reveal">Что мы делаем</h2>
+      <p class="section__subtitle reveal">
+        Каждая услуга — отдельное приключение. Мы не просто делаем работу —
+        мы создаём эмоции, которые остаются с вами навсегда
+      </p>
+      <div class="services__grid">
+        <div class="service-card reveal" style="transition-delay: 0.1s">
+          <div class="service-card__icon">
+            <span class="service-card__icon-float">📖</span>
+          </div>
+          <h3 class="service-card__title">Курсы</h3>
+          <p class="service-card__text">
+            Обучение, которое вдохновляет. Цветные буквы сами
+            складываются в слова, а знания — в шедевры
+          </p>
+        </div>
+        <div class="service-card reveal" style="transition-delay: 0.2s">
+          <div class="service-card__icon">
+            <span class="service-card__icon-float">🔮</span>
+          </div>
+          <h3 class="service-card__title">Сообщество</h3>
+          <p class="service-card__text">
+            Творческие существа со всего света обмениваются идеями
+            и передают друг другу сердечки поддержки
+          </p>
+        </div>
+        <div class="service-card reveal" style="transition-delay: 0.3s">
+          <div class="service-card__icon">
+            <span class="service-card__icon-float">🎤</span>
+          </div>
+          <h3 class="service-card__title">Мероприятия</h3>
+          <p class="service-card__text">
+            Яркие события, где микрофон превращается в кисть,
+            а зал — в полотно. Радужные кольца эмоций гарантированы
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section class="process section" id="process">
+    <div class="container">
+      <h2 class="section__title reveal">Как мы это делаем</h2>
+      <p class="section__subtitle reveal">
+        Три шага — три облака. Между ними радужная лестница,
+        по которой скачет ваш будущий результат
+      </p>
+      <div class="process__path">
+        <div class="process__path-line"></div>
+
+        <div class="process__step reveal-left" style="transition-delay: 0.2s">
+          <div class="process__step-num">01</div>
+          <div class="process__step-body">
+            <h3><span>☁️</span>Идея</h3>
+            <p>
+              Садимся в облако и обсуждаем ваш замысел.
+              Ни одной лишней детали — только чистое вдохновение
+            </p>
+          </div>
+        </div>
+
+        <div class="process__step reveal-left" style="transition-delay: 0.4s">
+          <div class="process__step-num">02</div>
+          <div class="process__step-body">
+            <h3><span>🌀</span>Создание</h3>
+            <p>
+              Миксер идей взбивает звёзды. Рождаются концепции,
+              эскизы и мыльные пузыри с будущими проектами
+            </p>
+          </div>
+        </div>
+
+        <div class="process__step reveal-left" style="transition-delay: 0.6s">
+          <div class="process__step-num">03</div>
+          <div class="process__step-body">
+            <h3><span>🎁</span>Результат</h3>
+            <p>
+              Готовый проект — как подарок с фейерверком внутри.
+              Открываете — и эмоции взрываются яркими красками
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== REVIEWS ===== -->
+  <section class="reviews section" id="reviews">
+    <div class="container">
+      <h2 class="section__title reveal">Галерея живых отзывов</h2>
+      <p class="section__subtitle reveal">
+        Не верьте нам на слово — послушайте тех, кто уже окунулся
+        в мир ярких красок
+      </p>
+      <div class="reviews__grid">
+        <div class="review reveal" style="transition-delay: 0.1s">
+          <div class="review__author">
+            <div class="review__avatar">А</div>
+            <div>
+              <div class="review__name">Анна К.</div>
+              <div class="review__role">Участница курса</div>
+            </div>
+          </div>
+          <p class="review__text">
+            Это как праздник, который всегда с тобой. Я заново открыла
+            для себя творчество и нашла единомышленников
+          </p>
+          <div class="review__emoji">🎨✨🥰</div>
+        </div>
+
+        <div class="review reveal" style="transition-delay: 0.2s">
+          <div class="review__author">
+            <div class="review__avatar">М</div>
+            <div>
+              <div class="review__name">Максим Д.</div>
+              <div class="review__role">Участник мероприятия</div>
+            </div>
+          </div>
+          <p class="review__text">
+            Никогда не думал, что воркшоп может быть настолько
+            увлекательным. 3 часа пролетели как один миг! 🔥
+          </p>
+          <div class="review__emoji">🚀⭐💫</div>
+        </div>
+
+        <div class="review reveal" style="transition-delay: 0.3s">
+          <div class="review__author">
+            <div class="review__avatar">Е</div>
+            <div>
+              <div class="review__name">Елена С.</div>
+              <div class="review__role">Клиент студии</div>
+            </div>
+          </div>
+          <p class="review__text">
+            Ребята превратили нашу скучную презентацию в настоящее
+            шоу. Коллеги до сих пор спрашивают, кто это сделал
+          </p>
+          <div class="review__emoji">🌟🎪👏</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING ===== -->
+  <section class="pricing section" id="pricing">
+    <div class="container">
+      <h2 class="section__title reveal">Волшебный прилавок</h2>
+      <p class="section__subtitle reveal">
+        Три воздушных шара — три тарифа. Выберите свой и
+        приготовьтесь к полёту
+      </p>
+      <div class="pricing__grid">
+        <div class="pricing__card reveal" style="transition-delay: 0.1s">
+          <div class="pricing__name">Старт</div>
+          <div class="pricing__price">9 900</div>
+          <div class="pricing__period">₽ / проект</div>
+          <ul class="pricing__features">
+            <li>Консультация и бриф</li>
+            <li>Дизайн-концепция</li>
+            <li>2 итерации правок</li>
+            <li>Финальные файлы</li>
+          </ul>
+          <a href="#footer" class="btn btn--outline">Выбрать</a>
+        </div>
+
+        <div class="pricing__card featured reveal" style="transition-delay: 0.2s">
+          <div class="pricing__name">Полёт</div>
+          <div class="pricing__price">24 900</div>
+          <div class="pricing__period">₽ / проект</div>
+          <ul class="pricing__features">
+            <li>Всё из тарифа «Старт»</li>
+            <li>Анимация и микровзаимодействия</li>
+            <li>5 итераций правок</li>
+            <li>Адаптив под все устройства</li>
+            <li>Передача исходников</li>
+          </ul>
+          <a href="#footer" class="btn btn--primary">Выбрать</a>
+        </div>
+
+        <div class="pricing__card reveal" style="transition-delay: 0.3s">
+          <div class="pricing__name">VIP</div>
+          <div class="pricing__price">49 900</div>
+          <div class="pricing__period">₽ / проект</div>
+          <ul class="pricing__features">
+            <li>Всё из тарифа «Полёт»</li>
+            <li>Индивидуальный иллюстрации</li>
+            <li>Безлимит правок</li>
+            <li>Приоритетная поддержка</li>
+            <li>Подарок-сюрприз от студии</li>
+          </ul>
+          <a href="#footer" class="btn btn--outline">Выбрать</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer section" id="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">БРЫЗГИ</div>
+          <p class="footer__desc">
+            Студия ярких впечатлений. Раскрашиваем жизнь с 2023 года.
+          </p>
+        </div>
+        <div>
+          <div class="footer__heading">Навигация</div>
+          <div class="footer__links">
+            <a href="#about">Кто мы</a>
+            <a href="#services">Что делаем</a>
+            <a href="#process">Процесс</a>
+            <a href="#pricing">Цены</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__heading">Контакты</div>
+          <div class="footer__links">
+            <a href="mailto:hello@splash.studio">hello@splash.studio</a>
+            <a href="tel:+79991234567">+7 (999) 123-45-67</a>
+            <a href="#">Telegram</a>
+            <a href="#">Instagram</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__chalkboard" id="chalkboard">
+        <div class="footer__mascot">🖌️</div>
+        <p class="footer__chalkboard-text">
+          Не уходи, у меня есть сюрприз <span>_</span>
+        </p>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; 2026 БРЫЗГИ. Все права защищены</span>
+        <span>Политика конфиденциальности</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/scripts/main.js"></script>
+</body>
+</html>
