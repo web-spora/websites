@@ -6,19 +6,19 @@
 
 ## Проекты
 
-### [Пиво Да Пиво](https://web-spora.github.io/websites/pivo-da-pivo/)
+### <a href="https://web-spora.github.io/websites/pivo-da-pivo/" target="_blank">Пиво Да Пиво</a>
 
 Интернет-меню сети магазинов «Пиво Да Пиво» с возможностью оформления заказа. Проект демонстрирует каталог товаров, фильтрацию, форму заказа и полную адаптивность.
 
-### [Code8](https://web-spora.github.io/websites/code8/)
+### <a href="https://web-spora.github.io/websites/code8/" target="_blank">Code8</a>
 
 Портфолио студии дизайна. Проект демонстрирует галерею работ, презентацию услуг и лаконичный современный дизайн, подчёркивающий визуальный стиль студии.
 
-### [Ninja-Club](https://web-spora.github.io/websites/ninja-club/)
+### <a href="https://web-spora.github.io/websites/ninja-club/" target="_blank">Ninja-Club</a>
 
 Лендинг клуба по ниндзя-спорту (OCR). Проект содержит информацию о тренировках, расписание, преимущества клуба и форму записи на пробное занятие.
 
-### [OCR-Ugra](https://web-spora.github.io/websites/ocr-ugra/)
+### <a href="https://web-spora.github.io/websites/ocr-ugra/" target="_blank">OCR-Ugra</a>
 
 Сайт Федерации гонок с препятствиями в ХМАО — Югра. Официально зарегистрированная региональная общественная организация, созданная для развития гонок с препятствиями в ХМАО-Югре. Проект содержит информацию о федерации, календарь соревнований, новости и контакты.
 
