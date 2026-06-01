@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="РОО «Федерация гонок с препятствиями ХМАО-Югры» — формируем культуру преодоления в Югре. Развитие OCR в регионе.">
+  <title>Федерация гонок с препятствиями в ХМАО - Югра</title>
+  <link rel="icon" type="image/svg+xml" href="./image/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+  <!-- header: шапка с логотипом, контактами, бургер-меню и навигацией -->
+  <header class="header">
+    <div class="header__inner container">
+      <a href="#" class="header__logo">
+        <img src="./image/logo.svg" alt="" class="header__logo-img" width="40" height="40" aria-hidden="true">
+        <span class="header__logo-text">Федерация гонок с препятствиями в ХМАО — Югра</span>
+      </a>
+      <div class="header__contacts">
+        <a href="mailto:fedocrhmao@mail.ru" class="header__contact-link">fedocrhmao@mail.ru</a>
+        <a href="tel:+79129056236" class="header__contact-link">+7(912) 905-62-36</a>
+      </div>
+      <button class="header__burger" aria-label="Открыть меню" aria-expanded="false">
+        <span class="header__burger-icon">
+          <span></span><span></span><span></span>
+        </span>
+        <span class="header__burger-text">Меню</span>
+      </button>
+      <nav class="header__nav" role="navigation" aria-label="Основное меню">
+        <ul class="header__menu">
+          <li><a href="#about" class="header__link">О федерации</a></li>
+          <li><a href="#gallery" class="header__link">Галерея</a></li>
+          <li><a href="#formats" class="header__link">Форматы</a></li>
+          <li><a href="#roadmap" class="header__link">План</a></li>
+          <li><a href="#docs" class="header__link">Документы</a></li>
+          <li><a href="#contact" class="header__link">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- main: основное содержимое страницы (10 секций) -->
+  <main>
+
+    <!-- hero: главный экран с фоновым изображением, заголовком, подзаголовком и CTA-кнопками -->
+    <section class="hero">
+      <picture>
+        <source media="(min-width: 768px)" srcset="./image/ocr25_goriz.jpg">
+        <img src="./image/ocr25_goriz.jpg" alt="Гонки с препятствиями ХМАО-Югры" class="hero__bg" loading="eager">
+      </picture>
+      <div class="hero__overlay"></div>
+      <div class="hero__content container">
+        <h1 class="hero__title">Формируем культуру преодоления в Югре</h1>
+        <p class="hero__subtitle">РОО «Федерация гонок с препятствиями ХМАО-Югры»</p>
+        <p class="hero__text">Делаем доступный спорт массовым. Объединяем тех, кто ценит движение, команду и результат — от 5 до 60 лет.</p>
+        <div class="hero__actions">
+          <a href="#contact" class="btn btn--primary">Обсудить сотрудничество</a>
+          <a href="#about" class="btn btn--outline">Узнать больше</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- gallery: слайдер-галерея с 8 изображениями, стрелками и точками навигации -->
+    <section class="section gallery-section fade-in" id="gallery" aria-label="Галерея">
+      <div class="container">
+        <h2 class="section__title">Галерея</h2>
+        <p class="section__intro">Моменты соревнований, тренировок и событий федерации</p>
+        <div class="gallery">
+        <div class="gallery__wrapper">
+          <div class="gallery__track">
+            <div class="gallery__slide">
+              <picture>
+                <source media="(min-width: 768px)" srcset="./image/ocr25_goriz.jpg">
+                <img src="./image/ocr25_goriz.jpg" alt="Гонки с препятствиями в Югре" class="gallery__img" loading="lazy">
+              </picture>
+              <div class="gallery__overlay"></div>
+            </div>
+            <div class="gallery__slide">
+              <picture>
+                <source media="(min-width: 768px)" srcset="./image/ocr1_vert.jpg">
+                <img src="./image/ocr1_vert.jpg" alt="Преодоление препятствий" class="gallery__img" loading="lazy">
+              </picture>
+              <div class="gallery__overlay"></div>
+            </div>
+            <div class="gallery__slide">
+              <picture>
+                <source media="(min-width: 768px)" srcset="./image/ocr10_goriz.jpg">
+                <img src="./image/ocr10_goriz.jpg" alt="Спортивные соревнования" class="gallery__img" loading="lazy">
+              </picture>
+              <div class="gallery__overlay"></div>
+            </div>
+            <div class="gallery__slide">
+              <picture>
+                <source media="(min-width: 768px)" srcset="./image/ocr11_vert.jpg">
+                <img src="./image/ocr11_vert.jpg" alt="Командный дух" class="gallery__img" loading="lazy">
+              </picture>
+              <div class="gallery__overlay"></div>
+            </div>
+            <div class="gallery__slide">
+              <picture>
+                <source media="(min-width: 768px)" srcset="./image/ocr15_goriz.jpg">
+                <img src="./image/ocr15_goriz.jpg" alt="Старт забега" class="gallery__img" loading="lazy">
+              </picture>
+              <div class="gallery__overlay"></div>
+            </div>
+            <div class="gallery__slide">
+              <picture>
+                <source media="(min-width: 768px)" srcset="./image/ocr16_vert.jpg">
+                <img src="./image/ocr16_vert.jpg" alt="Участники на трассе" class="gallery__img" loading="lazy">
+              </picture>
+              <div class="gallery__overlay"></div>
+            </div>
+            <div class="gallery__slide">
+              <picture>
+                <source media="(min-width: 768px)" srcset="./image/ocr19_goriz.jpg">
+                <img src="./image/ocr19_goriz.jpg" alt="Финишная прямая" class="gallery__img" loading="lazy">
+              </picture>
+              <div class="gallery__overlay"></div>
+            </div>
+            <div class="gallery__slide">
+              <picture>
+                <source media="(min-width: 768px)" srcset="./image/ocr22_goriz.jpg">
+                <img src="./image/ocr22_goriz.jpg" alt="Экипировка и старт" class="gallery__img" loading="lazy">
+              </picture>
+              <div class="gallery__overlay"></div>
+            </div>
+          </div>
+        </div>
+        <button class="gallery__btn gallery__btn--prev" aria-label="Предыдущий слайд"></button>
+        <button class="gallery__btn gallery__btn--next" aria-label="Следующий слайд"></button>
+        <div class="gallery__dots" role="tablist" aria-label="Навигация по слайдам"></div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- about: информация о федерации — кто мы, что делаем, наша цель -->
+    <section class="section fade-in" id="about">
+      <div class="container">
+        <h2 class="section__title">Кто мы</h2>
+        <p class="section__intro">Официально зарегистрированная региональная общественная организация, созданная для развития гонок с препятствиями в ХМАО-Югре.</p>
+
+        <div class="about__grid">
+          <div class="about__col">
+            <p class="about__lead">Мы — команда единомышленников, которая верит, что спорт должен быть для всех. Поэтому мы создали Федерацию гонок с препятствиями в Югре.</p>
+
+            <h3 class="about__subtitle">Просто о нас</h3>
+            <ul class="about__list">
+              <li>Появились в феврале 2026 года</li>
+              <li>Хотим, чтобы OCR стал доступен каждому жителю региона</li>
+              <li>Работаем вместе с федеральным центром (<a href="https://ocrrussia.com" target="_blank" rel="noopener">ocrrussia.com</a>), чтобы стандарты безопасности и качества были на уровне</li>
+              <li>Базируемся в Нефтеюганске, но работаем по всей Югре</li>
+            </ul>
+          </div>
+
+          <div class="about__col">
+            <h3 class="about__subtitle">Что мы делаем</h3>
+            <p class="about__text">Строим трассы, где пятилетний ребёнок бежит рядом с опытным атлетом. Где семья преодолевает препятствия вместе. Где корпоративная команда проверяет себя не в офисе, а на полосе препятствий.</p>
+
+            <h3 class="about__subtitle">Наша цель</h3>
+            <p class="about__goal">Чтобы каждый, кто хочет двигаться — мог это делать. Безопасно, интересно, с поддержкой.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- value: ценность для региона — 4 карточки с SVG-иконками (доступный спорт, командный дух, молодёжь, патриотизм) -->
+    <section class="section section--alt fade-in">
+      <div class="container">
+        <h2 class="section__title">Что меняется, когда появляется новый формат</h2>
+        <p class="section__intro">OCR — это не просто спорт. Это инструмент, который объединяет поколения, вовлекает молодёжь и укрепляет сообщество.</p>
+        <div class="cards">
+          <div class="card">
+            <div class="card__icon"><img src="./image/1.svg" alt="" class="card__svg" width="32" height="32" loading="lazy"></div>
+            <h3 class="card__title">Доступный спорт</h3>
+            <p class="card__text">Преодоление по силам каждому: от первых шагов в 5 лет до уверенного финиша в 60</p>
+          </div>
+          <div class="card">
+            <div class="card__icon"><img src="./image/2.svg" alt="" class="card__svg" width="32" height="32" loading="lazy"></div>
+            <h3 class="card__title">Командный дух</h3>
+            <p class="card__text">Эстафеты «родители + дети», корпоративные форматы, межпоколенческие старты</p>
+          </div>
+          <div class="card">
+            <div class="card__icon"><img src="./image/3.svg" alt="" class="card__svg" width="32" height="32" loading="lazy"></div>
+            <h3 class="card__title">Молодёжная вовлечённость</h3>
+            <p class="card__text">Альтернатива пассивному досугу, волонтёрские программы для подростков</p>
+          </div>
+          <div class="card">
+            <div class="card__icon"><img src="./image/4.svg" alt="" class="card__svg" width="32" height="32" loading="lazy"></div>
+            <h3 class="card__title">Патриотический контекст</h3>
+            <p class="card__text">Воспитание стойкости через спорт и уважение к родному краю</p>
+          </div>
+        </div>
+        <p class="accent">Формат, в котором могут участвовать разные поколения — усиливает связь внутри сообщества и расширяет аудиторию проекта.</p>
+      </div>
+    </section>
+
+    <!-- audience: целевая аудитория — 4 возрастные группы от 5 до 60+ лет -->
+    <section class="section fade-in">
+      <div class="container">
+        <h2 class="section__title">Кто может стать частью движения</h2>
+        <p class="section__intro">Федерация открыта для партнёров, участников и волонтёров — каждый может найти свой формат.</p>
+        <div class="cards cards--audience">
+          <div class="card card--audience">
+            <h3 class="card__title">Дети <span>5–12 лет</span></h3>
+            <p class="card__text">Адаптированные дистанции, семейные старты, первые шаги в спорте</p>
+          </div>
+          <div class="card card--audience">
+            <h3 class="card__title">Подростки и молодёжь <span>13–25 лет</span></h3>
+            <p class="card__text">«Гонка молодых», волонтёрство, челленджи</p>
+          </div>
+          <div class="card card--audience">
+            <h3 class="card__title">Взрослые <span>26–45 лет</span></h3>
+            <p class="card__text">Корпоративные лиги, тимбилдинг, личный вызов</p>
+          </div>
+          <div class="card card--audience">
+            <h3 class="card__title">Участники <span>46–60 лет</span></h3>
+            <p class="card__text">Формат «здоровье через движение», наставничество, семейные эстафеты</p>
+          </div>
+        </div>
+        <p class="accent">Когда в одном событии участвуют разные поколения — это создаёт уникальную атмосферу и расширяет возможности для партнёрства.</p>
+      </div>
+    </section>
+
+    <!-- formats: аккордеон «Как можно поддержать формат» — 4 варианта партнёрства -->
+    <section class="section section--alt fade-in" id="formats">
+      <div class="container">
+        <h2 class="section__title">Как можно поддержать развитие формата</h2>
+        <p class="section__intro">Мы на этапе формирования календаря и инфраструктуры. Это возможность предложить идеи, ресурсы или экспертизу — и увидеть, как проект растёт с вашим участием.</p>
+
+        <div class="accordion">
+          <div class="accordion__item">
+            <button class="accordion__trigger" aria-expanded="false">
+<span class="accordion__icon"><img src="./image/1.svg" alt="" class="accordion__svg" width="32" height="32" loading="lazy"></span>
+              <span class="accordion__label">Партнёрство в мероприятии</span>
+              <span class="accordion__arrow"></span>
+            </button>
+            <div class="accordion__content">
+              <p>Не просто логотип на баннере, а реальное присутствие в моменте. Вы можете стать соорганизатором старта, оформить зону восстановления, поддержать призовой фонд или провести свою активацию прямо на трассе. Участники запомнят бренд, который был рядом в самый напряжённый и радостный момент. Это прямой и тёплый контакт с активной аудиторией, которая ценит энергию, действие и честное партнёрство.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__trigger" aria-expanded="false">
+<span class="accordion__icon"><img src="./image/2.svg" alt="" class="accordion__svg" width="32" height="32" loading="lazy"></span>
+              <span class="accordion__label">Поддержка семейного трека</span>
+              <span class="accordion__arrow"></span>
+            </button>
+            <div class="accordion__content">
+              <p>Гонки с препятствиями — один из немногих форматов, где на одной дистанции могут оказаться пятилетний ребёнок и взрослый атлет. Поддерживая семейный трек, вы помогаете создавать безопасную и вдохновляющую среду для родителей и детей. Адаптированные препятствия, праздничная атмосфера и акцент на взаимовыручке делают старт событием, к которому семьи возвращаются снова. Это вклад в традицию здорового досуга и долгосрочную лояльность аудитории.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__trigger" aria-expanded="false">
+<span class="accordion__icon"><img src="./image/3.svg" alt="" class="accordion__svg" width="32" height="32" loading="lazy"></span>
+              <span class="accordion__label">Молодёжные инициативы</span>
+              <span class="accordion__arrow"></span>
+            </button>
+            <div class="accordion__content">
+              <p>Подростки и студенты ищут реальные вызовы и живое сообщество, а не пассивный досуг. В этом треке мы делаем ставку на волонтёрские программы, студенческие лиги и сотрудничество с учебными заведениями. Поддержка направления помогает молодым людям прокачивать soft skills, учиться ответственности и работать в команде. Для партнёра это возможность встроиться в среду будущих специалистов и укрепить репутацию бренда, который инвестирует в развитие поколения.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__trigger" aria-expanded="false">
+<span class="accordion__icon"><img src="./image/4.svg" alt="" class="accordion__svg" width="32" height="32" loading="lazy"></span>
+              <span class="accordion__label">Экспертиза и ресурсы</span>
+              <span class="accordion__arrow"></span>
+            </button>
+            <div class="accordion__content">
+              <p>Любой массовый спорт начинается с фундамента: безопасных трасс, качественного инвентаря и чёткой организации. Мы открыты к партнёрству с теми, кто может предоставить площадки, оборудование, помочь с логистикой или поделиться опытом в безопасности и медицинском сопровождении. Ваша профессиональная поддержка напрямую влияет на качество и надёжность каждого старта. Это вклад в инфраструктуру, которая останется в регионе надолго и станет основой для роста всего движения.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="accent">Инклюзивный формат — это не только социальная ценность, но и более широкая аудитория для коммуникации с брендом.</p>
+      </div>
+    </section>
+
+    <!-- roadmap: план развития — 3 этапа (весна-лето 2026, осень-зима 2026, 2027) -->
+    <section class="section fade-in" id="roadmap">
+      <div class="container">
+        <h2 class="section__title">Ближайшие шаги</h2>
+        <p class="section__intro">Поэтапный план развития формата OCR в регионе — от аккредитации до масштабирования в городах Югры.</p>
+        <div class="roadmap">
+          <div class="roadmap__item">
+            <div class="roadmap__dot"></div>
+            <div class="roadmap__body">
+              <h3 class="roadmap__period">2026, весна–лето</h3>
+              <ul class="roadmap__list">
+                <li>Аккредитация в Департаменте спорта ХМАО-Югры</li>
+                <li>Запуск «Арктического забега в Югре» (Ханты-Мансийск)</li>
+                <li>Пилотные семейные старты (формат 5+)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="roadmap__item">
+            <div class="roadmap__dot"></div>
+            <div class="roadmap__body">
+              <h3 class="roadmap__period">2026, осень–зима</h3>
+              <ul class="roadmap__list">
+                <li>Регулярный календарь стартов с возрастными категориями</li>
+                <li>Пилотные корпоративные и молодёжные форматы</li>
+              </ul>
+            </div>
+          </div>
+          <div class="roadmap__item">
+            <div class="roadmap__dot"></div>
+            <div class="roadmap__body">
+              <h3 class="roadmap__period">2027</h3>
+              <ul class="roadmap__list">
+                <li>Расширение географии: Нефтеюганск, Сургут, Нижневартовск</li>
+                <li>Запуск программы «Наставник»: участники 45+ поддерживают молодёжь</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <p class="accent">Каждый этап — возможность предложить решение, которое сделает спорт доступнее для конкретного возраста или группы.</p>
+      </div>
+    </section>
+
+    <!-- transparency: принципы работы — юр.статус, открытость, отчётность, безопасность -->
+    <section class="section section--alt fade-in">
+      <div class="container">
+        <h2 class="section__title">Как мы работаем</h2>
+        <p class="section__intro">Прозрачность, открытость и безопасность — основные принципы деятельности федерации.</p>
+        <ul class="transparency__list">
+          <li><strong>Юридический статус:</strong> РОО, действующая организация (ОГРН 1268600000855)</li>
+          <li><strong>Открытость:</strong> реквизиты, устав, контакты — в свободном доступе</li>
+          <li><strong>Отчётность:</strong> по запросу — информация о ходе реализации и использовании ресурсов</li>
+          <li><strong>Безопасность:</strong> приоритет медицинскому сопровождению и регламентам на всех стартах</li>
+        </ul>
+        <p class="accent">Доверие строится на прозрачности. Мы готовы к диалогу и открыты к вопросам.</p>
+      </div>
+    </section>
+
+    <!-- docs: документы федерации — 4 карточки (ЕГРН, реестр, НКО, устав) с JPG-превью и PDF-ссылками -->
+    <section class="section fade-in" id="docs">
+      <div class="container">
+        <h2 class="section__title">Документы</h2>
+        <p class="section__intro">Уставные, регистрационные и отчётные документы федерации — в открытом доступе</p>
+        <div class="docs__grid">
+          <a href="./docs/egrn.pdf" class="doc-card" target="_blank" rel="noopener" download>
+            <span class="doc-card__preview">
+              <img src="./docs/egrn.jpg" alt="Выписка из ЕГРН" class="doc-card__img" loading="lazy">
+              <span class="doc-card__badge">PDF</span>
+            </span>
+            <span class="doc-card__name">Выписка из ЕГРН</span>
+          </a>
+          <a href="./docs/reestr.pdf" class="doc-card" target="_blank" rel="noopener" download>
+            <span class="doc-card__preview">
+              <img src="./docs/reestr.jpg" alt="Запись в реестре" class="doc-card__img" loading="lazy">
+              <span class="doc-card__badge">PDF</span>
+            </span>
+            <span class="doc-card__name">Запись в реестре</span>
+          </a>
+          <a href="./docs/nko.pdf" class="doc-card" target="_blank" rel="noopener" download>
+            <span class="doc-card__preview">
+              <img src="./docs/nko.jpg" alt="Свидетельство НКО" class="doc-card__img" loading="lazy">
+              <span class="doc-card__badge">PDF</span>
+            </span>
+            <span class="doc-card__name">Свидетельство НКО</span>
+          </a>
+          <a href="./docs/ustav.pdf" class="doc-card" target="_blank" rel="noopener" download>
+            <span class="doc-card__preview">
+              <img src="./docs/ustav.jpg" alt="Устав (Минюст)" class="doc-card__img" loading="lazy">
+              <span class="doc-card__badge">PDF</span>
+            </span>
+            <span class="doc-card__name">Устав (Минюст)</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- contact: контакты — фото и данные президента + форма обратной связи -->
+    <section class="section fade-in" id="contact">
+      <div class="container">
+        <h2 class="section__title">Давайте обсудим</h2>
+        <p class="section__intro">Есть идея, ресурс или вопрос? Напишите — найдём формат, который будет полезен и проекту, и вам.</p>
+
+        <div class="contact__grid">
+          <div class="contact__card">
+            <div class="contact__card-photo">
+              <img src="./image/markov.jpg" alt="Марков Марк Владимирович" class="contact__card-img" loading="lazy">
+            </div>
+            <div class="contact__card-body">
+              <blockquote class="contact__quote">
+                <p>Мы на старте развития OCR в Югре — сейчас закладываются маршруты, календарь и партнёрские программы. Это возможность войти в проект на раннем этапе: предложить ресурсы, экспертизу или идею, а в ответ получить лояльную аудиторию и статус соавтора спортивного движения региона.</p>
+              </blockquote>
+              <div class="contact__sign">
+                <strong>Марков Марк Владимирович</strong>
+                <span>Президент Федерации</span>
+              </div>
+              <div class="contact__links">
+                <a href="mailto:fedocrhmao@mail.ru" class="contact__link">✉ fedocrhmao@mail.ru</a>
+                <a href="tel:+79129056236" class="contact__link">☏ +7(912) 905-62-36</a>
+                <span class="contact__link">⌂ Нефтеюганск, ХМАО-Югра</span>
+              </div>
+            </div>
+          </div>
+
+          <form class="contact__form" novalidate>
+            <div class="form__group">
+              <label for="name" class="form__label">Имя <span class="form__required">*</span></label>
+              <input type="text" id="name" name="name" class="form__input" required autocomplete="given-name">
+              <span class="form__error"></span>
+            </div>
+            <div class="form__group">
+              <label for="phone" class="form__label">Телефон</label>
+              <input type="tel" id="phone" name="phone" class="form__input" placeholder="+7 (900) 000-00-00" autocomplete="tel">
+              <span class="form__error"></span>
+            </div>
+            <div class="form__group">
+              <label for="email" class="form__label">Email <span class="form__required">*</span></label>
+              <input type="email" id="email" name="email" class="form__input" required autocomplete="email">
+              <span class="form__error"></span>
+            </div>
+            <div class="form__group">
+              <label for="message" class="form__label">Сообщение</label>
+              <textarea id="message" name="message" class="form__input form__textarea" rows="4"></textarea>
+            </div>
+            <div class="form__group form__group--checkbox">
+              <label class="form__checkbox">
+                <input type="checkbox" name="consent" required>
+                <span class="form__checkmark"></span>
+                <span>Я согласен на обработку персональных данных <span class="form__required">*</span></span>
+              </label>
+              <span class="form__error"></span>
+            </div>
+            <button type="submit" class="btn btn--primary btn--full">Отправить</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- footer: подвал с копирайтом -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">&copy; 2026 РОО «Федерация гонок с препятствиями ХМАО-Югры»</p>
+    </div>
+  </footer>
+
+  <!-- popup: модальное окно с сообщением об успешной отправке формы -->
+  <div class="popup-overlay" id="popup">
+    <div class="popup">
+      <button class="popup__close" id="popupClose" aria-label="Закрыть">&times;</button>
+      <div class="popup__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <p class="popup__title">Спасибо!</p>
+      <p class="popup__text">Мы свяжемся с вами в ближайшее время.</p>
+    </div>
+  </div>
+
+  <button class="scroll-top" id="scrollTop" aria-label="Наверх">&uarr;</button>
+
+  <script src="./js/main.js"></script>
+</body>
+</html>
+
