@@ -117,6 +117,20 @@
             border-top: 1px solid #e9e6e2;
         }
 
+        .repo-link {
+            display: inline-block;
+            margin-top: 0.75rem;
+            color: #2c7a4d;
+            text-decoration: none;
+            border-bottom: 1px dotted #b8cfb0;
+            transition: color 0.2s ease;
+        }
+
+        .repo-link:hover {
+            color: #1b5437;
+            border-bottom-color: #1b5437;
+        }
+
         @media (prefers-color-scheme: dark) {
             body {
                 background: #121212;
@@ -147,9 +161,14 @@
                 border-top-color: #2c2c2c;
                 color: #9a9a9a;
             }
+            .repo-link {
+                color: #87cfb0;
+            }
+            .repo-link:hover {
+                color: #b5e6cc;
+            }
         }
 
-        /* адаптивность и аккуратные отступы */
         @media (max-width: 480px) {
             .container {
                 padding: 1.5rem;
@@ -194,7 +213,8 @@
         </div>
 
         <footer>
-            Репозиторий обновляется по мере добавления новых проектов.
+            <div>Репозиторий обновляется по мере добавления новых проектов.</div>
+            <a href="https://github.com/web-spora/websites/tree/main" class="repo-link" target="_blank" rel="noopener noreferrer">📁 Исходный код всех проектов на GitHub →</a>
         </footer>
     </div>
 </body>
