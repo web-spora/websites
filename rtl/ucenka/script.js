@@ -96,20 +96,14 @@ function render() {
     return;
   }
   filtered.forEach(fields => {
-    var photoHtml = '';
     var article = '';
     var name = '';
-    var restHtml = '';
+    var hasPhoto = false;
+    var spoilerHtml = '';
 
     fields.forEach(f => {
       var v = f.value + '';
       if (f.label === 'Назначение' || f.label === 'Бренд') return;
-
-      if (v.indexOf('drive.google.com/file/d/') !== -1) {
-        var id = (v.match(/\/d\/([^\/]+)/) || [])[1] || '';
-        photoHtml = '<a href="' + v + '" target="_blank" rel="noopener"><img class="thumb" src="https://drive.google.com/thumbnail?id=' + id + '&sz=w200" alt="фото"></a>';
-        return;
-      }
 
       if (f.label === 'Артикул') {
         article = v;
@@ -121,20 +115,33 @@ function render() {
         return;
       }
 
-      if (v.indexOf('http://') === 0 || v.indexOf('https://') === 0) {
-        restHtml += '<div class="field"><span class="label">' + f.label + ':</span> <a href="' + v + '" target="_blank" rel="noopener">Перейти к фото</a></div>';
+      if (v.indexOf('drive.google.com/file/d/') !== -1) {
+        var id = (v.match(/\/d\/([^\/]+)/) || [])[1] || '';
+        hasPhoto = true;
+        spoilerHtml += '<div class="photo-wrap"><a href="' + v + '" target="_blank" rel="noopener"><img class="thumb" src="https://drive.google.com/thumbnail?id=' + id + '&sz=w200" alt="фото"><div class="photo-hint">Увеличить</div></a></div>';
+      } else if (v.indexOf('http://') === 0 || v.indexOf('https://') === 0) {
+        spoilerHtml += '<div class="field"><span class="label">' + f.label + ':</span> <a href="' + v + '" target="_blank" rel="noopener">Перейти к фото</a></div>';
       } else {
-        restHtml += '<div class="field"><span class="label">' + f.label + ':</span> ' + v + '</div>';
+        spoilerHtml += '<div class="field"><span class="label">' + f.label + ':</span> ' + v + '</div>';
       }
     });
 
-    var cardHtml = photoHtml;
+    spoilerHtml = (hasPhoto ? '' : '<div class="no-photo">Фото ещё нет</div>') + spoilerHtml;
+
+    var cardHtml = '';
     if (article) cardHtml += '<div class="article" onclick="copyArticle(this)" title="Нажмите, чтобы скопировать">' + article + '</div>';
     if (name) cardHtml += '<div class="product-name">' + name + '</div>';
-    cardHtml += restHtml;
+    cardHtml += '<div class="spoiler-btn" onclick="toggleSpoiler(this)">Подробнее <span class="spoiler-arrow">▼</span></div>';
+    cardHtml += '<div class="spoiler-content">' + spoilerHtml + '</div>';
 
     container.innerHTML += '<div class="card">' + cardHtml + '</div>';
   });
+}
+
+function toggleSpoiler(btn) {
+  btn.classList.toggle('open');
+  var content = btn.nextElementSibling;
+  if (content) content.classList.toggle('open');
 }
 
 function copyArticle(el) {

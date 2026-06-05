@@ -118,6 +118,48 @@ h1 {
   line-height: 1.5;
 }
 
+.no-photo {
+  width: 200px;
+  height: 200px;
+  background: #e9ecef;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 0.9em;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+.spoiler-btn {
+  margin-top: 10px;
+  padding: 8px 0;
+  color: #2980b9;
+  font-size: 0.9em;
+  cursor: pointer;
+  user-select: none;
+  border-top: 1px solid #eee;
+}
+.spoiler-btn:hover {
+  color: #1a6da0;
+}
+.spoiler-arrow {
+  font-size: 0.75em;
+  transition: transform 0.2s;
+  display: inline-block;
+}
+.spoiler-btn.open .spoiler-arrow {
+  transform: rotate(180deg);
+}
+.spoiler-content {
+  display: none;
+  margin-top: 10px;
+}
+.spoiler-content.open {
+  display: block;
+}
+
 .card a {
   color: #2980b9;
   text-decoration: none;
@@ -127,15 +169,45 @@ h1 {
   text-decoration: underline;
 }
 
+.photo-wrap {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
 .thumb {
   display: block;
-  width: 100%;
-  max-width: 200px;
-  border-radius: 8px;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
   border: 1px solid #eee;
   cursor: pointer;
   transition: transform 0.2s;
-  margin-bottom: 12px;
+}
+
+.photo-hint {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95em;
+  opacity: 0;
+  transition: opacity 0.2s;
+  cursor: pointer;
+}
+
+.photo-wrap:hover .photo-hint {
+  opacity: 1;
+}
+
+.photo-wrap:hover .thumb {
+  transform: scale(1.05);
 }
 .thumb:hover {
   transform: scale(1.05);
