@@ -22,7 +22,24 @@
       <a href="#contacts" class="header-link">Контакты</a>
     </nav>
     <a href="tel:88003026213" class="header-phone">8 (800) 302-62-13</a>
+    <button class="burger" id="burger" aria-label="Меню">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
   </header>
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-inner">
+      <button class="mobile-dropdown-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+        Склады <span class="dropdown-arrow">▼</span>
+      </button>
+      <div class="mobile-dropdown-items">
+        <a href="cat_krd.html" class="header-link">Краснодар</a>
+        <a href="cat_msk.html" class="header-link active">Москва</a>
+      </div>
+      <a href="#contacts" class="header-link" onclick="closeMobileNav()">Контакты</a>
+    </div>
+  </div>
 
   <h1>Уценка на складе в Москве</h1>
 
@@ -104,6 +121,23 @@
     });
     btn.addEventListener('click', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    var burger = document.getElementById('burger');
+    var mobileNav = document.getElementById('mobileNav');
+    burger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      burger.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+    });
+    function closeMobileNav() {
+      burger.classList.remove('open');
+      mobileNav.classList.remove('open');
+    }
+    document.addEventListener('click', function(e) {
+      if (mobileNav.classList.contains('open') && !e.target.closest('.site-header') && !e.target.closest('.mobile-nav')) {
+        closeMobileNav();
+      }
     });
   </script>
 
