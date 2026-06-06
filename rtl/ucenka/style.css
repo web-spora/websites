@@ -90,6 +90,12 @@ h1 {
   grid-column: 1 / -1;
 }
 
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .card .field {
   margin: 8px 0;
   font-size: 0.95em;
@@ -106,6 +112,8 @@ h1 {
   margin-bottom: 10px;
   cursor: pointer;
   user-select: all;
+  width: 100%;
+  max-width: 200px;
 }
 .article:hover {
   color: #555;
@@ -116,6 +124,8 @@ h1 {
   color: #2c3e50;
   margin-bottom: 10px;
   line-height: 1.5;
+  width: 100%;
+  max-width: 200px;
 }
 
 .no-photo {
@@ -140,6 +150,8 @@ h1 {
   cursor: pointer;
   user-select: none;
   border-top: 1px solid #eee;
+  width: 100%;
+  max-width: 200px;
 }
 .spoiler-btn:hover {
   color: #1a6da0;
@@ -155,6 +167,8 @@ h1 {
 .spoiler-content {
   display: none;
   margin-top: 10px;
+  width: 100%;
+  max-width: 200px;
 }
 .spoiler-content.open {
   display: block;
@@ -176,6 +190,7 @@ h1 {
   margin-bottom: 12px;
   overflow: hidden;
   border-radius: 8px;
+  flex-shrink: 0;
 }
 
 .thumb {
@@ -366,8 +381,6 @@ h1 {
 
 .dropdown {
   position: relative;
-  padding-bottom: 16px;
-  margin-bottom: -16px;
 }
 .dropdown-toggle {
   cursor: default;
@@ -383,8 +396,9 @@ h1 {
   left: 50%;
   transform: translateX(-50%);
   min-width: 140px;
-  margin-top: 4px;
+  margin-top: 0;
   padding: 6px;
+  padding-top: 12px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.12);
@@ -552,12 +566,19 @@ h1 {
     padding: 15px;
   }
 
+  .card .article,
+  .card .product-name,
+  .card .spoiler-btn,
+  .card .spoiler-content {
+    max-width: 100%;
+  }
+
   .photo-wrap,
   .no-photo {
     width: 100%;
     height: auto;
     aspect-ratio: 1 / 1;
-    max-width: 280px;
+    max-width: 200px;
   }
 
   .thumb {
