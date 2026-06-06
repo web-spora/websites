@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Уценённые оригинальные масла — Рустранс-Логистик</title>
+  <link rel="icon" type="image/svg+xml" href="image/favicon.svg">
   <style>
     html { scroll-behavior: smooth; }
     body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: #f4f7f6; color: #333; line-height: 1.6; }
@@ -164,16 +165,176 @@
       margin-top: 5px;
     }
 
-    @media (max-width: 600px) {
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border: none;
+      border-radius: 50%;
+      background: #e11110;
+      color: #fff;
+      font-size: 1.4em;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .scroll-top.show { display: flex; }
+    .scroll-top:hover {
+      background: #c00f0e;
+      transform: translateY(-3px);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 16px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+      padding: 14px 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+    }
+    .header-logo {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    .header-logo-img {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
+    .header-nav {
+      display: flex;
+      gap: 4px;
+    }
+    .header-link {
+      padding: 6px 14px;
+      border-radius: 8px;
+      color: #555;
+      font-weight: 600;
+      font-size: 0.95em;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .header-link:hover {
+      background: #f0f4f8;
+      color: #2c3e50;
+    }
+    .header-phone {
+      color: #2c3e50;
+      font-weight: 700;
+      font-size: 0.95em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .header-phone:hover { color: #e11110; }
+
+    .dropdown {
+      position: relative;
+      padding-bottom: 16px;
+      margin-bottom: -16px;
+    }
+    .dropdown-toggle { cursor: default; }
+    .dropdown-arrow { font-size: 0.6em; margin-left: 2px; }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 140px;
+      margin-top: 4px;
+      padding: 6px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      z-index: 200;
+    }
+    .dropdown-menu .header-link {
+      display: block;
+      padding: 8px 14px;
+      white-space: nowrap;
+      border-radius: 6px;
+    }
+    .dropdown:hover .dropdown-menu,
+    .dropdown-menu:hover { display: block; }
+
+    @media (max-width: 700px) {
+      .wrapper { padding: 16px 10px; }
+
+      .site-header {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px 14px;
+        top: 10px;
+      }
+
+      .header-logo-img { height: 26px; }
+
+      .header-nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .header-link {
+        font-size: 0.85em;
+        padding: 5px 10px;
+      }
+
+      .header-phone { font-size: 0.85em; }
+
+      .dropdown-menu {
+        left: 0;
+        right: 0;
+        transform: none;
+      }
+
       h1 { font-size: 1.6em; }
       .nav-cards { grid-template-columns: 1fr; }
-      .wrapper { padding: 20px 14px; }
+
+      .contacts-box { padding: 16px; }
+      .social-icons img { width: 40px; }
+      .scroll-top {
+        bottom: 16px;
+        right: 16px;
+        width: 44px;
+        height: 44px;
+        font-size: 1.2em;
+      }
     }
   </style>
 </head>
 <body>
 
 <div class="wrapper">
+
+  <header class="site-header">
+    <a href="index.html" class="header-logo"><img src="image/original_new.svg" alt="RTL" class="header-logo-img"></a>
+    <nav class="header-nav">
+      <div class="dropdown">
+        <a href="#" class="header-link dropdown-toggle">Склады <span class="dropdown-arrow">▼</span></a>
+        <div class="dropdown-menu">
+          <a href="cat_krd.html" class="header-link">Краснодар</a>
+          <a href="cat_msk.html" class="header-link">Москва</a>
+        </div>
+      </div>
+      <a href="#section6" class="header-link">Контакты</a>
+    </nav>
+    <a href="tel:88003026213" class="header-phone">8 (800) 302-62-13</a>
+  </header>
 
   <h1>Уценённые оригинальные масла: качество без компромиссов, цена — с выгодой</h1>
   <p class="subtitle">
@@ -183,11 +344,11 @@
   <!-- Навигация по каталогам -->
   <div class="nav-cards">
     <a href="cat_krd.html" class="nav-card nav-card-krd">
-      📍 Уценка на складе в Краснодаре
-      <small>ООО «Рустранс-Логистик» / ИП Трошкина</small>
+      Уценка на складе в Краснодаре
+      <small>Перейти к каталогу</small>
     </a>
     <a href="cat_msk.html" class="nav-card nav-card-msk">
-      📍 Уценка на складе в Москве
+      Уценка на складе в Москве
       <small>Перейти к каталогу</small>
     </a>
   </div>
@@ -294,6 +455,15 @@
   <div class="contacts-box">
     <h3 style="margin-top: 0;">Остались вопросы?</h3>
     <p>Если вы хотите уточнить состояние конкретной партии уценённого масла, запросить дополнительные фото или обсудить условия доставки — наши специалисты всегда готовы помочь.</p>
+
+    <h4 style="margin: 16px 0 4px;">Склад в Краснодаре</h4>
+    <p style="margin: 0 0 4px;"><a href="https://yandex.ru/maps/-/CPdI5J4Y" target="_blank" rel="noopener">г. Краснодар, Переулок Алмазный, 3</a></p>
+    <p style="margin: 0 0 12px; font-size: 0.9em; color: #666;">Пн-Пт. с 9:00 - 18:00 (по М.В)</p>
+
+    <h4 style="margin: 0 0 4px;">Склад в Москве</h4>
+    <p style="margin: 0 0 4px;"><a href="https://yandex.ru/maps/-/CPdIBO~b" target="_blank" rel="noopener">г. Москва, Очаковское шоссе, 40 стр. 2</a></p>
+    <p style="margin: 0 0 12px; font-size: 0.9em; color: #666;">Пн-Пт. с 9:00 - 18:00 (по М.В)</p>
+
     <ul>
       <li><strong>Телефон:</strong> <a href="tel:88003026213">8 (800) 302-62-13</a></li>
       <li><strong>Email:</strong> <a href="mailto:info@rustrans-logistic.ru">info@rustrans-logistic.ru</a></li>
@@ -301,14 +471,6 @@
       <li><strong>Telegram:</strong> <a href="https://t.me/auto_oil_original" target="_blank">Написать</a></li>
       <li><strong>MAX:</strong> <a href="https://max.ru/u/f9LHodD0cOL72m65mKz_gLP7zu5EwMPYiAGS9HKZkGOK8SmGdv9qfRQ13zM" target="_blank">Написать</a></li>
     </ul>
-  </div>
-
-  <!-- SEO -->
-  <div class="seo-block">
-    <p>Еще ищут:</p>
-    <p class="seo-tags">
-      уценённые оригинальные автомасла, купить моторное масло со склада, дешёвые масла Toyota BMW Shell, уценка масел с повреждённой упаковкой, оптовая продажа уценённых масел, купить трансмиссионное масло с дефектом, уценённые масла Lexus Mazda Nissan, оригинальные масла с ГТД по сниженной цене, масла с Честным знаком со склада, самовывоз уценённых масел из Москвы, купить масла с повреждённой этикеткой, уценённые масла Mercedes-Benz, дешёвые масла для АКПП и вариаторов, оптовые остатки импортных масел, масла Shell Helix HX8 по акции, уценённые масла Toyota SN 5W-30, купить масла с дефектами упаковки, уценка масел с повреждёнными канистрами, масла с повреждениями транспортировки, уценённые масла с фото, купить оригинальные масла без розничной наценки, уценённые масла с полным пакетом документов, дешёвые масла для автосервисов, масла с повреждённой упаковкой но оригинальные, уценённые масла в наличии, купить масла по остаткам, уценённые масла от импортёра, масла с дефектами упаковки но не повреждены, уценённые масла по акции, масла с повреждениями при доставке, купить уценённые масла оптом, масла с дефектами этикетки, уценённые масла с фото реального состояния, масла с повреждениями коробки, уценённые масла с документами, купить масла со склада в Москве, уценённые масла с подтверждением качества, масла с дефектами упаковки но не контрафакт, оригинальное масло со скидкой, уценка из-за косметических дефектов, проверка оригинальности масла, ГТД на уценённое масло, декларация соответствия ТР ТС, протокол испытаний масла, маркировка Честный ЗНАК, самовывоз Москва, доставка уценённых масел, опт уценённых масел, автосервис закупка масел, дистрибьютор автомасел, Рустранс-Логистик уценка, rustrans-logistic.ru sale
-    </p>
   </div>
 
   <!-- Соцсети -->
@@ -325,6 +487,18 @@
       <a href="https://max.ru/rustranslogistic" target="_blank"><img src="https://rustrans-logistic.ru/upload/medialibrary/9c1/tw6klue04dv3tiuilaw594sty2yt0c2m.png" alt="MAX"></a>
     </div>
   </div>
+
+  <button class="scroll-top" id="scrollTop" title="Наверх">↑</button>
+
+  <script>
+    var btn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', function() {
+      btn.classList.toggle('show', window.scrollY > 300);
+    });
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 
 </div>
 </body>

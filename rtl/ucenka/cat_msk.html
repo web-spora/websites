@@ -5,8 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Уценка на складе в Москве</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="image/favicon.svg">
 </head>
 <body>
+
+  <header class="site-header">
+    <a href="index.html" class="header-logo"><img src="image/original_new.svg" alt="RTL" class="header-logo-img"></a>
+    <nav class="header-nav">
+      <div class="dropdown">
+        <a href="#" class="header-link dropdown-toggle">Склады <span class="dropdown-arrow">▼</span></a>
+        <div class="dropdown-menu">
+          <a href="cat_krd.html" class="header-link">Краснодар</a>
+          <a href="cat_msk.html" class="header-link active">Москва</a>
+        </div>
+      </div>
+      <a href="#contacts" class="header-link">Контакты</a>
+    </nav>
+    <a href="tel:88003026213" class="header-phone">8 (800) 302-62-13</a>
+  </header>
 
   <h1>Уценка на складе в Москве</h1>
 
@@ -46,6 +62,50 @@
   <div id="container" class="cards-container">
     <div class="loading">Загрузка данных...</div>
   </div>
+
+  <div class="contacts-block" id="contacts">
+    <h3>Контакты склада в Москве</h3>
+    <div class="contacts-grid">
+      <div class="contact-item">
+        <span class="contact-label">Адрес:</span>
+        <span><a href="https://yandex.ru/maps/-/CPdIBO~b" target="_blank" rel="noopener">г. Москва, Очаковское шоссе, 40 стр. 2</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Часы работы:</span>
+        <span>Пн-Пт. с 9:00 - 18:00 (по М.В)</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Контакты:</span>
+        <span>Тел.: <a href="tel:88003026213">8 (800) 302-62-13</a> | <a href="mailto:info@rustrans-logistic.ru">info@rustrans-logistic.ru</a></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="social-box">
+    <h3>Подписывайтесь на нас</h3>
+    <p>и будьте в курсе новинок и акций от RTL — вашего импортера оригинальных автомасел</p>
+    <div class="social-icons">
+      <a href="https://www.youtube.com/@autooiloriginal" target="_blank"><img src="https://rustrans-logistic.ru/upload/medialibrary/5fd/qztha1skormgfm88rog401rlpow3udzg.png" alt="YouTube"></a>
+      <a href="https://dzen.ru/rustrans_logistic_oil" target="_blank"><img src="https://rustrans-logistic.ru/upload/medialibrary/769/or5o63reyin94oyqmowb9xjga9qyjbpe.png" alt="Дзен"></a>
+      <a href="https://vk.com/rustranslogistic" target="_blank"><img src="https://rustrans-logistic.ru/upload/medialibrary/691/uhw8i65qa848liihpity26aejby085p1.png" alt="ВКонтакте"></a>
+      <a href="https://t.me/rustranslogistic" target="_blank"><img src="https://rustrans-logistic.ru/upload/medialibrary/af1/8kme5n0a423oh027eulfwntvgkyc1q0a.png" alt="Telegram"></a>
+      <a href="https://wa.me/79180863874" target="_blank"><img src="https://rustrans-logistic.ru/upload/medialibrary/b46/eyxko3ib13nmjhrcv6qmim4q8vmcd4q3.png" alt="WhatsApp"></a>
+      <a href="https://rutube.ru/channel/31274683/" target="_blank"><img src="https://rustrans-logistic.ru/upload/medialibrary/35c/m1kbtmk7pth5tcqt1vyt3u933ozs0vva.png" alt="Rutube"></a>
+      <a href="https://max.ru/rustranslogistic" target="_blank"><img src="https://rustrans-logistic.ru/upload/medialibrary/9c1/tw6klue04dv3tiuilaw594sty2yt0c2m.png" alt="MAX"></a>
+    </div>
+  </div>
+
+  <button class="scroll-top" id="scrollTop" title="Наверх">↑</button>
+
+  <script>
+    var btn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', function() {
+      btn.classList.toggle('show', window.scrollY > 300);
+    });
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 
   <script src="script_msk.js"></script>
 
