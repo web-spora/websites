@@ -165,6 +165,7 @@ function cartSubmit() {
     cartStatus('Введите корректный номер телефона', 'error');
     return;
   }
+  phone = phone.replace(/\D/g, '');
   var email = document.getElementById('orderEmail').value.trim();
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     cartStatus('Введите корректный email', 'error');

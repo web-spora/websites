@@ -20,19 +20,12 @@ function doPost(e) {
       new Date(),
       data.city || '',
       data.name || '',
-      data.phone ? "'" + data.phone : '',
+      (data.phone || '').replace(/\D/g, ''),
       data.email || '',
       data.comment || '',
       itemsText,
       data.leadId || ''
     ]);
-
-    // Форсируем текстовый формат для колонки телефона (D)
-    if (data.phone) {
-      var phoneCell = sheet.getRange(sheet.getLastRow(), 4);
-      phoneCell.setNumberFormat('@');
-      phoneCell.setValue(data.phone);
-    }
 
     return ContentService
       .createTextOutput(JSON.stringify({ success: true }))
