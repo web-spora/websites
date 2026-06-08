@@ -22,6 +22,10 @@
       <a href="#contacts" class="header-link">Контакты</a>
     </nav>
     <a href="tel:88003026213" class="header-phone">8 (800) 302-62-13</a>
+    <button class="cart-toggle" id="cartToggle" onclick="showCart()" aria-label="Корзина">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
     <button class="burger" id="burger" aria-label="Меню">
       <span class="burger-line"></span>
       <span class="burger-line"></span>
@@ -113,6 +117,33 @@
       <a href="https://max.ru/rustranslogistic" target="_blank"><img src="https://rustrans-logistic.ru/upload/medialibrary/9c1/tw6klue04dv3tiuilaw594sty2yt0c2m.png" alt="MAX"></a>
     </div>
   </div>
+
+  <div class="cart-overlay" id="cartOverlay" onclick="hideCart()"></div>
+  <div class="cart-panel" id="cartPanel">
+    <div class="cart-panel-header">
+      <h3>Корзина</h3>
+      <button class="cart-panel-close" onclick="hideCart()">✕</button>
+    </div>
+    <div class="cart-panel-body" id="cartBody">
+      <div class="cart-empty">Корзина пуста</div>
+    </div>
+    <div class="cart-panel-footer" id="cartFooter" style="display:none">
+      <div class="cart-form">
+        <input type="text" id="orderName" placeholder="Имя *" required>
+        <input type="tel" id="orderPhone" placeholder="+7 (___) ___-__-__" oninput="formatPhone(this)">
+        <input type="email" id="orderEmail" placeholder="Email">
+
+        <textarea id="orderComment" placeholder="Комментарий" rows="3"></textarea>
+        <label class="cart-consent">
+          <input type="checkbox" id="orderConsent"> Согласен с <a href="privacy.html" target="_blank">политикой обработки персональных данных</a> *
+        </label>
+      </div>
+      <button class="cart-submit" onclick="cartSubmit()">Отправить заказ</button>
+      <div class="cart-status" id="cartStatus"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
 
   <button class="scroll-top" id="scrollTop" title="Наверх">↑</button>
 

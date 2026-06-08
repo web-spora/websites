@@ -20,6 +20,216 @@ function findField(fields, label) {
   return '';
 }
 
+function esc(v) {
+  return (v || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// Cart module
+var B24_URL = 'https://auto-oil.bitrix24.ru/rest/6642/te8yq8tl2zc82wop/crm.lead.add';
+var CART_KEY = 'cart_krd';
+var cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+
+function cartSync() {
+  cart.forEach(function(item) {
+    var fields = allItems.find(function(f) { return findField(f, 'Артикул') === item.article; });
+    if (!fields) {
+      cart = cart.filter(function(i) { return i.article !== item.article; });
+    } else {
+      var maxQty = parseFloat(findField(fields, 'Остаток')) || 0;
+      if (item.qty > maxQty) item.qty = maxQty;
+    }
+  });
+  cart = cart.filter(function(i) { return i.qty > 0; });
+  cartSave();
+}
+
+function cartAdd(article, brand, name, maxQty) {
+  var existing = cart.find(function(i) { return i.article === article; });
+  var current = existing ? existing.qty : 0;
+  if (current < maxQty) {
+    if (existing) { existing.qty++; }
+    else { cart.push({ article: article, brand: brand, name: name, qty: 1 }); }
+    cartSave();
+    cartRender();
+    render();
+  }
+}
+
+function cartChangeQty(article, delta) {
+  var existing = cart.find(function(i) { return i.article === article; });
+  if (!existing) {
+    if (delta > 0) {
+      var f = allItems.find(function(f) { return findField(f, 'Артикул') === article; });
+      if (f) cartAdd(article, findField(f, 'Бренд'), findField(f, 'Наименование'), parseFloat(findField(f, 'Остаток')) || 0);
+    }
+    return;
+  }
+  var fields = allItems.find(function(f) { return findField(f, 'Артикул') === article; });
+  var maxQty = fields ? parseFloat(findField(fields, 'Остаток')) || 0 : 0;
+  var newQty = existing.qty + delta;
+  if (newQty <= 0) {
+    cart = cart.filter(function(i) { return i.article !== article; });
+  } else if (newQty <= maxQty) {
+    existing.qty = newQty;
+  } else {
+    existing.qty = maxQty;
+  }
+  cartSave();
+  cartRender();
+  render();
+}
+
+function cartRemove(article) {
+  cart = cart.filter(function(i) { return i.article !== article; });
+  cartSave();
+  cartRender();
+  render();
+}
+
+function cartSave() {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
+
+function cartRender() {
+  var badge = document.getElementById('cartBadge');
+  if (badge) {
+    var count = cart.reduce(function(sum, i) { return sum + i.qty; }, 0);
+    badge.textContent = count;
+    badge.style.display = count > 0 ? 'flex' : 'none';
+  }
+  var body = document.getElementById('cartBody');
+  var footer = document.getElementById('cartFooter');
+  if (!body) return;
+  if (cart.length === 0) {
+    body.innerHTML = '<div class="cart-empty">Корзина пуста</div>';
+    if (footer) footer.style.display = 'none';
+    return;
+  }
+  if (footer) footer.style.display = 'block';
+  var html = '';
+  cart.forEach(function(item) {
+    var safeArticle = esc(item.article);
+    html += '<div class="cart-item">' +
+      '<div class="cart-item-info">' +
+      '<div class="cart-item-article">' + safeArticle + '</div>' +
+      '<div class="cart-item-name">' + esc(item.name) + '</div>' +
+      '</div>' +
+      '<div class="cart-item-qty">' +
+      '<button class="cart-qty-btn" data-article="' + safeArticle + '" data-delta="-1">−</button>' +
+      '<span class="cart-qty-val">' + item.qty + '</span>' +
+      '<button class="cart-qty-btn" data-article="' + safeArticle + '" data-delta="1">+</button>' +
+      '<button class="cart-item-remove" data-article="' + safeArticle + '" data-remove>✕</button>' +
+      '</div>' +
+      '</div>';
+  });
+  body.innerHTML = html;
+}
+
+function showCart() {
+  var panel = document.getElementById('cartPanel');
+  var overlay = document.getElementById('cartOverlay');
+  if (panel) panel.classList.add('open');
+  if (overlay) overlay.classList.add('open');
+}
+
+function hideCart() {
+  var panel = document.getElementById('cartPanel');
+  var overlay = document.getElementById('cartOverlay');
+  if (panel) panel.classList.remove('open');
+  if (overlay) overlay.classList.remove('open');
+}
+
+function formatPhone(input) {
+  var v = input.value.replace(/\D/g, '');
+  if (v.length === 0) { input.value = ''; return; }
+  if (v[0] === '8') v = '7' + v.slice(1);
+  if (v[0] !== '7') v = '7' + v;
+  if (v.length > 11) v = v.slice(0, 11);
+  var s = '+7';
+  if (v.length > 1) s += ' (' + v.slice(1, 4);
+  if (v.length > 4) s += ') ' + v.slice(4, 7);
+  if (v.length > 7) s += '-' + v.slice(7, 9);
+  if (v.length > 9) s += '-' + v.slice(9, 11);
+  input.value = s;
+}
+
+function cartSubmit() {
+  var name = document.getElementById('orderName').value.trim();
+  var phone = document.getElementById('orderPhone').value.trim();
+  if (!name || !phone) {
+    cartStatus('Заполните Имя и Телефон', 'error');
+    return;
+  }
+  if (!/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/.test(phone)) {
+    cartStatus('Введите корректный номер телефона', 'error');
+    return;
+  }
+  var email = document.getElementById('orderEmail').value.trim();
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    cartStatus('Введите корректный email', 'error');
+    return;
+  }
+  if (!document.getElementById('orderConsent').checked) {
+    cartStatus('Примите согласие на обработку данных', 'error');
+    return;
+  }
+  if (cart.length === 0) {
+    cartStatus('Корзина пуста', 'error');
+    return;
+  }
+  cartStatus('Отправка...', '');
+  var itemsText = '';
+  cart.forEach(function(i) {
+    itemsText += i.article + ' | ' + i.brand + ' | ' + i.name + ' | ' + i.qty + ' шт.\n';
+  });
+  var payload = {
+    fields: {
+      TITLE: 'Заказ уценки от ' + name,
+      NAME: name,
+      PHONE: [{ VALUE: phone, VALUE_TYPE: 'WORK' }],
+      EMAIL: [{ VALUE: email, VALUE_TYPE: 'WORK' }],
+      COMMENTS: 'Город: Краснодар\n\nСостав заказа:\n' + itemsText + '\nКомментарий: ' + document.getElementById('orderComment').value.trim(),
+      SOURCE_ID: 'UCENKA'
+    }
+  };
+
+  fetch(B24_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+  .then(function(r) { return r.json(); })
+  .then(function(res) {
+    if (res.result) {
+      cartStatus('Заказ отправлен!', 'success');
+      showToast('Заказ отправлен! Номер: ' + res.result);
+      cart = [];
+      cartSave();
+      cartRender();
+      render();
+      setTimeout(function() { hideCart(); }, 3000);
+    } else {
+      cartStatus('Ошибка: ' + JSON.stringify(res), 'error');
+    }
+  })
+  .catch(function(err) {
+    cartStatus('Ошибка отправки: ' + err, 'error');
+  });
+}
+
+function cartStatus(msg, type) {
+  var el = document.getElementById('cartStatus');
+  if (!el) return;
+  el.textContent = msg;
+  el.className = 'cart-status';
+  if (type) el.classList.add('cart-status-' + type);
+}
+
+function showToast(msg) {
+  var el = document.getElementById('toast');
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.add('open');
+  setTimeout(function() { el.classList.remove('open'); }, 4000);
+}
+// End cart module
+
 ORGANIZATIONS.forEach(org => {
   const cbName = 'cb' + org.gid;
   window[cbName] = function(json) {
@@ -67,6 +277,8 @@ function onDataLoaded() {
   filterCat.addEventListener('change', render);
   filterQty.addEventListener('change', render);
   render();
+  cartSync();
+  cartRender();
 }
 
 function render() {
@@ -126,10 +338,28 @@ function render() {
     });
 
     var cardHtml = photoHtml || '<div class="no-photo">Фото ещё нет</div>';
-    if (article) cardHtml += '<div class="article" onclick="copyArticle(this)" title="Нажмите, чтобы скопировать">' + article + '</div>';
+    if (article) cardHtml += '<div class="article" data-copy-article="' + esc(article) + '" title="Нажмите, чтобы скопировать">' + article + '</div>';
     if (name) cardHtml += '<div class="product-name">' + name + '</div>';
-    cardHtml += '<div class="spoiler-btn" onclick="toggleSpoiler(this)">Подробнее <span class="spoiler-arrow">▼</span></div>';
+    cardHtml += '<div class="spoiler-btn" data-spoiler>Подробнее <span class="spoiler-arrow">▼</span></div>';
     cardHtml += '<div class="spoiler-content">' + restHtml + '</div>';
+
+    var qtyVal = parseFloat(findField(fields, 'Остаток')) || 0;
+    if (qtyVal > 0) {
+      var safeArticle = esc(article);
+      var safeBrand = esc(findField(fields, 'Бренд'));
+      var safeName = esc(name);
+      var inCartItem = cart.find(function(i) { return i.article === article; });
+      var inCartQty = inCartItem ? inCartItem.qty : 0;
+      var remaining = qtyVal - inCartQty;
+      cardHtml += '<div class="cart-controls">' +
+        '<div class="cart-control-qty">' +
+        '<button data-article="' + safeArticle + '" data-delta="-1"' + (inCartQty > 0 ? '' : ' disabled') + '>−</button>' +
+        '<span>' + inCartQty + '</span>' +
+        '<button data-article="' + safeArticle + '" data-delta="1"' + (remaining > 0 ? '' : ' disabled') + '>+</button>' +
+        '</div>' +
+        '<button class="cart-add-btn" data-article="' + safeArticle + '" data-brand="' + safeBrand + '" data-name="' + safeName + '" data-qty="' + qtyVal + '"' + (remaining > 0 ? '' : ' disabled') + '>В корзину</button>' +
+        '</div>';
+    }
 
     container.innerHTML += '<div class="card">' + cardHtml + '</div>';
   });
@@ -150,3 +380,31 @@ function copyArticle(el) {
     });
   }
 }
+
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('[data-article][data-delta]');
+  if (btn && !btn.disabled) {
+    cartChangeQty(btn.dataset.article, parseInt(btn.dataset.delta, 10));
+    return;
+  }
+  btn = e.target.closest('.cart-add-btn[data-article]');
+  if (btn && !btn.disabled) {
+    cartAdd(btn.dataset.article, btn.dataset.brand || '', btn.dataset.name || '', parseInt(btn.dataset.qty, 10) || 0);
+    return;
+  }
+  btn = e.target.closest('[data-remove][data-article]');
+  if (btn) {
+    cartRemove(btn.dataset.article);
+    return;
+  }
+  btn = e.target.closest('[data-spoiler]');
+  if (btn) {
+    toggleSpoiler(btn);
+    return;
+  }
+  btn = e.target.closest('[data-copy-article]');
+  if (btn) {
+    copyArticle(btn);
+    return;
+  }
+});
