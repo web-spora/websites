@@ -1,14 +1,20 @@
 const SHEET_ID = '1b7QHS-KwZpwu84svzpXTZnX9Z_Vh2iCYJJDug1fmKiA';
 
+function doGet() {
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: 'ok', message: 'ok' }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
 function doPost(e) {
   try {
-    const data = JSON.parse(e.postData.contents);
-    const ss = SpreadsheetApp.openById(SHEET_ID);
-    const sheet = ss.getSheetByName('Заказы') || ss.getSheets()[0];
+    var data = JSON.parse(e.postData.contents);
+    var ss = SpreadsheetApp.openById(SHEET_ID);
+    var sheet = ss.getSheetByName('Заказы') || ss.getSheets()[0];
 
-    const itemsText = (data.items || [])
-      .map(function(i) { return i.article + ' | ' + i.brand + ' | ' + i.name + ' | ' + i.qty + ' шт.'; })
-      .join('\n');
+    var itemsText = (data.items || []).map(function(i) {
+      return i.article + ' | ' + i.brand + ' | ' + i.name + ' | ' + i.qty + ' шт.';
+    }).join('\n');
 
     sheet.appendRow([
       new Date(),

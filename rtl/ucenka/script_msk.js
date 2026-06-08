@@ -205,7 +205,7 @@ function copyArticle(el) {
 
 // Cart module
 var B24_URL = 'https://auto-oil.bitrix24.ru/rest/6642/te8yq8tl2zc82wop/crm.lead.add';
-var LOG_SHEET_URL = 'https://script.google.com/macros/s/AKfycbyBhcqNHZKrx7tCZ7tXKL0wjcr9aZU-sACX2Vj4fudmDq3KqhVbRbxqh52fn6vpCja8/exec';
+var LOG_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxsFr_tdoOUvnm8XpBBGwPN_QddU1GLFIQHfOcLK5-W4hBhkWFoi9wVt9K3l0r8gqsP/exec';
 var CART_KEY = 'cart_msk';
 var cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
 
@@ -379,20 +379,15 @@ function cartSubmit() {
     if (res.result) {
       cartStatus('Заказ отправлен!', 'success');
       showToast('Заказ отправлен! Номер: ' + res.result);
-      fetch(LOG_SHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          city: 'Москва',
-          name: name,
-          phone: phone,
-          email: email,
-          comment: document.getElementById('orderComment').value.trim(),
-          items: cart,
-          leadId: res.result
-        })
-      });
+      navigator.sendBeacon(LOG_SHEET_URL, JSON.stringify({
+        city: 'Москва',
+        name: name,
+        phone: phone,
+        email: email,
+        comment: document.getElementById('orderComment').value.trim(),
+        items: cart,
+        leadId: res.result
+      }));
       cart = [];
       cartSave();
       cartRender();
