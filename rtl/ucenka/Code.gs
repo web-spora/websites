@@ -20,7 +20,7 @@ function doPost(e) {
       new Date(),
       data.city || '',
       data.name || '',
-      data.phone || '',
+      data.phone ? "'" + data.phone : '',
       data.email || '',
       data.comment || '',
       itemsText,
