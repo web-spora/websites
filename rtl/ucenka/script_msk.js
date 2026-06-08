@@ -205,7 +205,7 @@ function copyArticle(el) {
 
 // Cart module
 var B24_URL = 'https://auto-oil.bitrix24.ru/rest/6642/te8yq8tl2zc82wop/crm.lead.add';
-var LOG_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxsFr_tdoOUvnm8XpBBGwPN_QddU1GLFIQHfOcLK5-W4hBhkWFoi9wVt9K3l0r8gqsP/exec';
+var LOG_SHEET_URL = 'https://script.google.com/macros/s/AKfycbzFlhwXJjcK-hl5PwI5Y1AQlG11RXrifPhu8TrGHj0OjBHqoRLuNg0EykdRJBa7aFF0/exec';
 var CART_KEY = 'cart_msk';
 var cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
 
