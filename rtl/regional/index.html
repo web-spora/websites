@@ -120,6 +120,7 @@
                 <p><strong>Пришлите своё резюме или сопроводительное письмо на электронную почту:</strong></p>
                 <p><a href="mailto:director@rustrans-logistic.ru">director@rustrans-logistic.ru</a></p>
                 <p class="contact-hint">Обязательно укажите в письме ваш опыт работы в сфере продаж и оставьте контактные данные для обратной связи.</p>
+                <button class="btn btn-open-modal" style="margin-top:15px;">Заполнить анкету</button>
             </div>
 
             <div class="seo-tags">
@@ -151,6 +152,57 @@
     <footer class="footer">
         <p>&copy; <span id="year"></span> ООО «Рустранс-Логистик». Все права защищены.</p>
     </footer>
+
+    <button class="float-btn" id="floatBtn" aria-label="Откликнуться">Откликнуться</button>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <button class="modal-close" id="modalClose" aria-label="Закрыть">&times;</button>
+            <h2>Анкета кандидата</h2>
+            <p class="modal-subtitle">Заполните форму, и мы свяжемся с вами</p>
+            <form id="quizForm">
+                <label>
+                    ФИО *
+                    <input type="text" name="name" required>
+                </label>
+                <label>
+                    Телефон *
+                    <input type="tel" name="phone" required>
+                </label>
+                <label>
+                    Email
+                    <input type="email" name="email">
+                </label>
+                <label>
+                    Город / Регион
+                    <input type="text" name="city">
+                </label>
+                <label>
+                    Опыт работы в продажах (лет)
+                    <input type="number" name="experience" min="0">
+                </label>
+                <label>Наличие клиентской базы</label>
+                <div class="radio-group">
+                    <label class="radio-label"><input type="radio" name="client_base" value="Да"> Да</label>
+                    <label class="radio-label"><input type="radio" name="client_base" value="Нет"> Нет</label>
+                </div>
+                <label>
+                    Желаемый формат работы
+                    <select name="format">
+                        <option value="">— выберите —</option>
+                        <option value="Полный день">Полный день</option>
+                        <option value="Частичная занятость">Частичная занятость</option>
+                        <option value="Стажировка">Стажировка</option>
+                    </select>
+                </label>
+                <label>
+                    О себе / Сопроводительное сообщение
+                    <textarea name="message" rows="4"></textarea>
+                </label>
+                <button type="submit" class="btn btn-submit">Отправить</button>
+            </form>
+        </div>
+    </div>
 
     <script src="js/main.js"></script>
 </body>
