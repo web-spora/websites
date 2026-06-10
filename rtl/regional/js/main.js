@@ -328,6 +328,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitBtn = document.getElementById('submitQuiz');
     if (submitBtn) {
         submitBtn.addEventListener('click', async () => {
+            if (submitBtn.disabled) return;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Отправка...';
+
             saveCurrentStepData();
 
             formData.timestamp = new Date().toISOString();
@@ -358,9 +362,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('❌ Ошибка отправки:', err);
             }
 
-            alert('Спасибо! Ваша анкета принята. Мы свяжемся с вами в ближайшее время.');
+            showToast('Спасибо! Ваша анкета принята.<br>Мы рассмотрим её и свяжемся с вами в ближайшее время.');
             closeModal();
         });
+    }
+
+    function showToast(msg) {
+        const existing = document.querySelector('.toast');
+        if (existing) existing.remove();
+
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.innerHTML = msg;
+        document.body.appendChild(toast);
+
+        setTimeout(() => toast.classList.add('show'), 10);
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 300);
+        }, 4500);
     }
 
     const navLinks = document.querySelectorAll('.nav-list a');
