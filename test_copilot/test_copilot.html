@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Test Copilot — Случайная страница</title>
+  <style>
+    :root{--bg:#0f172a;--card:#0b1220;--accent:#7c3aed;--muted:#94a3b8}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial}
+    body{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--bg),#071028);color:#e6eef8}
+    .card{width:92%;max-width:900px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border-radius:14px;padding:28px;box-shadow:0 8px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+    h1{margin:0 0 8px;font-size:1.6rem}
+    p.lead{margin:0 0 18px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
+    .box{background:rgba(255,255,255,0.02);padding:18px;border-radius:10px}
+    .meta{font-size:0.9rem;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+    .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:var(--accent);color:white;text-decoration:none;font-weight:600}
+    .quote{font-style:italic;color:#dbeafe;margin:12px 0;padding-left:12px;border-left:3px solid rgba(255,255,255,0.06)}
+    footer{margin-top:16px;font-size:0.85rem;color:var(--muted)}
+    @media (max-width:800px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <main class="card" id="page">
+    <header>
+      <h1>Добро пожаловать в тестовую страницу Copilot</h1>
+      <p class="lead">Это автоматически сгенерированное содержимое для проверки создания файлов в репозитории.</p>
+    </header>
+
+    <section class="grid">
+      <div class="box">
+        <div class="meta"><span id="datetime">—</span><a class="btn" id="regen">Сгенерировать заново</a></div>
+        <div id="hero">
+          <h2 id="title">Заголовок статьи</h2>
+          <p class="quote" id="quote">«Здесь появится случайная цитата»</p>
+          <p id="content">Контент страницы — немного случайного текста, чтобы было на что посмотреть. Здесь может быть описание, инструкции или демонстрация верстки.</p>
+        </div>
+      </div>
+
+      <aside class="box">
+        <strong>Быстрая информация</strong>
+        <ul id="info" style="padding-left:18px;margin-top:8px;color:var(--muted)">
+          <li>Случайный фон: <span id="bgcolor">#0f172a</span></li>
+          <li>Размер окна: <span id="winsize">—</span></li>
+          <li>Случайный число: <span id="randnum">—</span></li>
+        </ul>
+        <img id="placeholder" src="https://picsum.photos/seed/copilot/300/160" alt="placeholder" style="width:100%;border-radius:8px;margin-top:12px;display:block">
+        <footer>Сгенерировано: <span id="generated_by">Copilot</span></footer>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const titles = [
+      'Как устроен тестовый сайт',
+      'Небольшая демонстрация Copilot',
+      'Случайная заметка',
+      'Проверочная страница для репозитория'
+    ];
+
+    const quotes = [
+      'Код — это поэзия, которую понимает машина.',
+      'Лучший способ предсказать будущее — создать его.',
+      'Ошибка — это просто часть пути к правильному решению.',
+      'Маленькие шаги приводят к большим переменам.'
+    ];
+
+    const paragraphs = [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.',
+      'Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.',
+      'Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.'
+    ];
+
+    function rand(arr){return arr[Math.floor(Math.random()*arr.length)];}
+
+    function update(){
+      document.getElementById('title').textContent = rand(titles);
+      document.getElementById('quote').textContent = '«' + rand(quotes) + '»';
+      document.getElementById('content').textContent = rand(paragraphs);
+      const randColor = '#'+Math.floor(Math.random()*16777215).toString(16).padStart(6,'0');
+      document.documentElement.style.setProperty('--bg', randColor);
+      document.getElementById('bgcolor').textContent = randColor;
+      document.getElementById('winsize').textContent = window.innerWidth + '×' + window.innerHeight;
+      document.getElementById('randnum').textContent = Math.floor(Math.random()*100000);
+      document.getElementById('datetime').textContent = new Date().toLocaleString();
+      document.getElementById('placeholder').src = 'https://picsum.photos/seed/' + Math.floor(Math.random()*10000) + '/300/160';
+    }
+
+    document.getElementById('regen').addEventListener('click', update);
+    window.addEventListener('resize', ()=>{document.getElementById('winsize').textContent = window.innerWidth + '×' + window.innerHeight});
+    // initial
+    update();
+  </script>
+</body>
+</html>
