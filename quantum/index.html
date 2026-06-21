@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Квантовый мир — интерактивная физика</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #070714;
+  --bg2: #0b0b24;
+  --surface: #101028;
+  --cyan: #00d4ff;
+  --purple: #a855f7;
+  --emerald: #10b981;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --glow-cyan: 0 0 20px rgba(0,212,255,.3);
+  --glow-purple: 0 0 20px rgba(168,85,247,.3);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 3px; }
+
+/* progress bar */
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: linear-gradient(90deg, var(--cyan), var(--purple));
+  width: 0%; z-index: 1000;
+  transition: width .1s linear;
+}
+
+/* sections */
+section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 1.5rem;
+}
+.container {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--cyan), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.section-title.visible { opacity: 1; transform: translateY(0); }
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--text2);
+  max-width: 700px;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .8s ease .2s, transform .8s ease .2s;
+}
+.section-desc.visible { opacity: 1; transform: translateY(0); }
+.section-desc strong { color: var(--text); }
+
+/* ===== HERO ===== */
+#hero {
+  min-height: 100vh;
+  justify-content: center;
+  text-align: center;
+  padding: 0;
+}
+#hero-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+}
+.hero-overlay {
+  position: relative; z-index: 2;
+  padding: 2rem;
+}
+.hero-overlay h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  background: linear-gradient(135deg, #fff 0%, var(--cyan) 50%, var(--purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0;
+  transform: scale(.9);
+  animation: heroIn 1.2s ease forwards;
+}
+.hero-overlay .tagline {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--text2);
+  margin-top: 1rem;
+  opacity: 0;
+  animation: heroIn 1s ease .4s forwards;
+}
+@keyframes heroIn {
+  to { opacity: 1; transform: none; }
+}
+.scroll-hint {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  z-index: 2;
+  color: var(--text2);
+  font-size: .85rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  animation: bob 2s ease-in-out infinite;
+}
+.scroll-hint::after {
+  content: ''; display: block; width: 1px; height: 40px;
+  background: var(--cyan); margin: .5rem auto 0;
+  opacity: .5;
+}
+@keyframes bob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ===== WAVE-PARTICLE ===== */
+.dual-panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s ease .4s, transform .8s ease .4s;
+}
+.dual-panels.visible { opacity: 1; transform: translateY(0); }
+.panel {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 1rem;
+  border: 1px solid rgba(0,212,255,.08);
+  text-align: center;
+  transition: border-color .3s, box-shadow .3s;
+}
+.panel:hover {
+  border-color: rgba(0,212,255,.3);
+  box-shadow: var(--glow-cyan);
+}
+.panel canvas {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 8px;
+  background: #050510;
+}
+.panel span {
+  display: block;
+  margin-top: .75rem;
+  font-weight: 600;
+  font-size: .95rem;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+/* ===== UNCERTAINTY ===== */
+.uncertainty-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s ease .4s, transform .8s ease .4s;
+}
+.uncertainty-layout.visible { opacity: 1; transform: translateY(0); }
+#uncertainty-canvas {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 12px;
+  background: #050510;
+  border: 1px solid rgba(0,212,255,.1);
+  cursor: crosshair;
+}
+.uncertainty-info { padding: 1rem 0; }
+.bar-group { margin: 1rem 0; }
+.bar-label {
+  display: flex; justify-content: space-between;
+  font-size: .85rem; color: var(--text2); margin-bottom: .3rem;
+}
+.bar-label span:last-child { font-family: 'Courier New', monospace; color: var(--text); }
+.bar-track {
+  height: 8px; border-radius: 4px;
+  background: rgba(255,255,255,.06);
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%; border-radius: 4px;
+  transition: width .15s ease;
+}
+.bar-fill.dx { background: var(--cyan); }
+.bar-fill.dp { background: var(--purple); }
+.uncertainty-formula {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(0,212,255,.05);
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-family: 'Courier New', monospace;
+  color: var(--cyan);
+}
+
+/* ===== TUNNELING ===== */
+#tunnel-canvas {
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  background: #050510;
+  border: 1px solid rgba(168,85,247,.15);
+  display: block;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s ease .4s, transform .8s ease .4s;
+}
+#tunnel-canvas.visible { opacity: 1; transform: translateY(0); }
+.tunnel-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .8s ease .6s;
+}
+.tunnel-controls.visible { opacity: 1; }
+.tunnel-controls label {
+  color: var(--text2);
+  font-size: .9rem;
+}
+.tunnel-controls input[type="range"] {
+  -webkit-appearance: none;
+  width: 200px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255,255,255,.1);
+  outline: none;
+}
+.tunnel-controls input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--purple);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(168,85,247,.5);
+}
+.tunnel-info {
+  font-size: .85rem;
+  color: var(--text2);
+  text-align: center;
+  margin-top: .5rem;
+  font-family: 'Courier New', monospace;
+}
+
+/* ===== SUPERPOSITION ===== */
+.superposition-scene {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s ease .4s, transform .8s ease .4s;
+}
+.superposition-scene.visible { opacity: 1; transform: translateY(0); }
+.super-state {
+  width: 180px; height: 180px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all .5s cubic-bezier(.34,1.56,.64,1);
+  cursor: default;
+  position: relative;
+  border: 2px solid transparent;
+}
+.super-state .emoji { font-size: 3rem; margin-bottom: .5rem; }
+.super-state.a {
+  background: rgba(0,212,255,.08);
+  border-color: rgba(0,212,255,.2);
+  color: var(--cyan);
+}
+.super-state.b {
+  background: rgba(168,85,247,.08);
+  border-color: rgba(168,85,247,.2);
+  color: var(--purple);
+}
+.super-state.both {
+  background: linear-gradient(135deg, rgba(0,212,255,.08) 50%, rgba(168,85,247,.08) 50%);
+  border-color: rgba(255,255,255,.15);
+  color: var(--text);
+}
+.super-state.both .emoji { filter: blur(3px); opacity: .7; }
+.super-state.both::before {
+  content: '⊗';
+  position: absolute;
+  font-size: 5rem;
+  color: rgba(255,255,255,.04);
+  animation: spin 4s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.super-state.collapsed-a {
+  background: rgba(0,212,255,.2);
+  border-color: var(--cyan);
+  box-shadow: var(--glow-cyan);
+  transform: scale(1.05);
+}
+.super-state.collapsed-b {
+  background: rgba(168,85,247,.2);
+  border-color: var(--purple);
+  box-shadow: var(--glow-purple);
+  transform: scale(1.05);
+}
+.super-hint {
+  text-align: center;
+  color: var(--text2);
+  margin-top: 1.5rem;
+  font-size: .95rem;
+  opacity: 0;
+  transition: opacity .8s ease .6s;
+}
+.super-hint.visible { opacity: 1; }
+
+/* ===== ENTANGLEMENT ===== */
+#entangle-canvas {
+  width: 100%;
+  max-width: 700px;
+  aspect-ratio: 2/1;
+  border-radius: 12px;
+  background: #050510;
+  border: 1px solid rgba(0,212,255,.1);
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s ease .4s, transform .8s ease .4s;
+}
+#entangle-canvas.visible { opacity: 1; transform: translateY(0); }
+.entangle-info {
+  text-align: center;
+  color: var(--text2);
+  margin-top: 1rem;
+  font-size: .9rem;
+}
+.entangle-info strong { color: var(--emerald); }
+
+/* ===== FOOTER ===== */
+#footer {
+  min-height: 30vh;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,.04);
+}
+#footer p { color: var(--text2); font-size: .9rem; }
+#footer .quantum-sig {
+  font-family: 'Courier New', monospace;
+  color: var(--cyan);
+  margin-top: .5rem;
+  font-size: .8rem;
+  opacity: .6;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .dual-panels { grid-template-columns: 1fr; }
+  .uncertainty-layout { grid-template-columns: 1fr; }
+  .superposition-scene { gap: 1.5rem; }
+  .super-state { width: 140px; height: 140px; }
+  .super-state .emoji { font-size: 2rem; }
+  .tunnel-controls { flex-direction: column; }
+  .tunnel-controls input[type="range"] { width: 100%; max-width: 300px; }
+}
+@media (max-width: 480px) {
+  section { padding: 3rem 1rem; }
+  .panel canvas { aspect-ratio: 1/1; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-overlay">
+    <h1>Квантовый мир</h1>
+    <p class="tagline">Путешествие в микромир, где классическая физика отступает</p>
+  </div>
+  <div class="scroll-hint">Скролльте вниз</div>
+</section>
+
+<!-- WAVE-PARTICLE -->
+<section id="wave-particle">
+  <div class="container">
+    <h2 class="section-title">Корпускулярно-волновой дуализм</h2>
+    <p class="section-desc">
+      Каждая частица — одновременно и <strong>волна</strong>, и <strong>частица</strong>.
+      Эксперимент с двумя щелями показывает: электроны проходят через обе щели сразу,
+      создавая интерференционную картину. Наведите мышь на панели, чтобы «измерить» частицу.
+    </p>
+    <div class="dual-panels">
+      <div class="panel">
+        <canvas id="particle-canvas"></canvas>
+        <span>⦿ Частицы</span>
+      </div>
+      <div class="panel">
+        <canvas id="wave-canvas"></canvas>
+        <span>〰️ Волны</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UNCERTAINTY -->
+<section id="uncertainty">
+  <div class="container">
+    <h2 class="section-title">Принцип неопределённости</h2>
+    <p class="section-desc">
+      Чем точнее мы знаем <strong>положение</strong> частицы, тем меньше мы знаем её
+      <strong>импульс</strong> — и наоборот. Двигайте мышью по графику, чтобы увидеть это в действии.
+    </p>
+    <div class="uncertainty-layout">
+      <div>
+        <canvas id="uncertainty-canvas"></canvas>
+      </div>
+      <div class="uncertainty-info">
+        <div class="bar-group">
+          <div class="bar-label">
+            <span>Неопределённость Δx</span>
+            <span id="dx-value">0.50</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill dx" id="dx-bar" style="width:50%"></div></div>
+        </div>
+        <div class="bar-group">
+          <div class="bar-label">
+            <span>Неопределённость Δp</span>
+            <span id="dp-value">0.50</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill dp" id="dp-bar" style="width:50%"></div></div>
+        </div>
+        <div class="uncertainty-formula">Δx · Δp ≥ ℏ / 2</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TUNNELING -->
+<section id="tunneling">
+  <div class="container">
+    <h2 class="section-title">Квантовое туннелирование</h2>
+    <p class="section-desc">
+      Частица может <strong>проходить сквозь</strong> барьер, даже если у неё не хватает энергии, —
+      благодаря волновой природе. Скролльте или меняйте ползунок, чтобы управлять энергией частицы.
+    </p>
+    <canvas id="tunnel-canvas"></canvas>
+    <div class="tunnel-controls">
+      <label>Энергия частицы</label>
+      <input type="range" id="energy-slider" min="0" max="100" value="40">
+      <span id="energy-label" style="color:var(--text);font-family:'Courier New',monospace">40%</span>
+    </div>
+    <div class="tunnel-info" id="tunnel-info">Вероятность туннелирования: <span id="tunnel-prob" style="color:var(--cyan)">12.4%</span></div>
+  </div>
+</section>
+
+<!-- SUPERPOSITION -->
+<section id="superposition">
+  <div class="container">
+    <h2 class="section-title">Квантовая суперпозиция</h2>
+    <p class="section-desc">
+      Частица находится во <strong>всех возможных состояниях одновременно</strong>,
+      пока измерение не «схлопнет» её в одно. Наведите курсор — и superposition коллапсирует.
+    </p>
+    <div class="superposition-scene">
+      <div class="super-state a" id="state-a">
+        <span class="emoji">◉</span>
+        <span>Спин ↑</span>
+      </div>
+      <div class="super-state both" id="state-both">
+        <span class="emoji">◉</span>
+        <span>Суперпозиция</span>
+      </div>
+      <div class="super-state b" id="state-b">
+        <span class="emoji">◉</span>
+        <span>Спин ↓</span>
+      </div>
+    </div>
+    <p class="super-hint">⊷ Наведите на суперпозицию, чтобы коллапсировать состояние</p>
+  </div>
+</section>
+
+<!-- ENTANGLEMENT -->
+<section id="entanglement">
+  <div class="container">
+    <h2 class="section-title">Квантовая запутанность</h2>
+    <p class="section-desc">
+      Две частицы <strong>мгновенно</strong> влияют друг на друга, даже на расстоянии.
+      Эйнштейн называл это «жутким действием на расстоянии». Нажмите на любую частицу.
+    </p>
+    <canvas id="entangle-canvas"></canvas>
+    <p class="entangle-info">🔮 Частицы <strong>запутаны</strong> — изменение одной мгновенно отражается на другой</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<section id="footer">
+  <p>Квантовая механика — теория, которая точно описывает реальность</p>
+  <div class="quantum-sig">ψ(x,t) = ⟨x|ψ⟩ · exp(−iEt/ℏ)</div>
+  <p style="margin-top:2rem;font-size:.8rem">Сделано с любовью к физике. 2026</p>
+</section>
+
+<script>
+// ===== UTILITY =====
+const lerp = (a,b,t) => a+(b-a)*t;
+
+// ===== PROGRESS BAR =====
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - innerHeight;
+  document.getElementById('progress-bar').style.width = (scrollY / Math.max(h,1) * 100) + '%';
+});
+
+// ===== INTERSECTION OBSERVER =====
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.section-title, .section-desc, .dual-panels, .uncertainty-layout, #tunnel-canvas, .tunnel-controls, .superposition-scene, .super-hint, #entangle-canvas').forEach(el => el.classList.add('visible'));
+    }
+  });
+}, { threshold: .15 });
+document.querySelectorAll('section').forEach(s => obs.observe(s));
+
+// ===== HERO PARTICLES =====
+const heroCanvas = document.getElementById('hero-canvas');
+const hCtx = heroCanvas.getContext('2d');
+let heroParticles = [];
+function resizeHero() {
+  heroCanvas.width = heroCanvas.parentElement.offsetWidth;
+  heroCanvas.height = heroCanvas.parentElement.offsetHeight;
+}
+// we call resizeHero later in init
+class HeroParticle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * heroCanvas.width;
+    this.y = Math.random() * heroCanvas.height;
+    this.vx = (Math.random() - .5) * .6;
+    this.vy = (Math.random() - .5) * .6;
+    this.r = Math.random() * 2 + .5;
+    this.alpha = Math.random() * .5 + .3;
+  }
+  update() {
+    this.x += this.vx; this.y += this.vy;
+    if (this.x < 0 || this.x > heroCanvas.width) this.vx *= -1;
+    if (this.y < 0 || this.y > heroCanvas.height) this.vy *= -1;
+  }
+  draw(ctx) {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(0,212,255,${this.alpha})`;
+    ctx.fill();
+  }
+}
+
+function initHero() {
+  resizeHero();
+  heroParticles = [];
+  for (let i = 0; i < 150; i++) heroParticles.push(new HeroParticle());
+}
+function drawHero() {
+  hCtx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+  heroParticles.forEach(p => { p.update(); p.draw(hCtx); });
+  // connections
+  for (let i = 0; i < heroParticles.length; i++) {
+    for (let j = i + 1; j < heroParticles.length; j++) {
+      const dx = heroParticles[i].x - heroParticles[j].x;
+      const dy = heroParticles[i].y - heroParticles[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 120) {
+        hCtx.beginPath();
+        hCtx.moveTo(heroParticles[i].x, heroParticles[i].y);
+        hCtx.lineTo(heroParticles[j].x, heroParticles[j].y);
+        hCtx.strokeStyle = `rgba(0,212,255,${.12 * (1 - dist / 120)})`;
+        hCtx.lineWidth = .5;
+        hCtx.stroke();
+      }
+    }
+  }
+}
+
+// ===== WAVE-PARTICLE =====
+const particleCanvas = document.getElementById('particle-canvas');
+const pCtx = particleCanvas.getContext('2d');
+const waveCanvas = document.getElementById('wave-canvas');
+const wCtx = waveCanvas.getContext('2d');
+let pp = [], wavePhase = 0, isMeasuring = false;
+
+function resizeWPCanvases() {
+  const rect = particleCanvas.parentElement.getBoundingClientRect();
+  const w = particleCanvas.clientWidth || 400;
+  const h = particleCanvas.clientHeight || 300;
+  particleCanvas.width = w * 2; particleCanvas.height = h * 2;
+  waveCanvas.width = w * 2; waveCanvas.height = h * 2;
+  particleCanvas.style.width = w + 'px'; particleCanvas.style.height = h + 'px';
+  waveCanvas.style.width = w + 'px'; waveCanvas.style.height = h + 'px';
+}
+
+function initWP() {
+  resizeWPCanvases();
+  pp = [];
+  const cw = particleCanvas.width, ch = particleCanvas.height;
+  for (let i = 0; i < 2000; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const r = Math.sqrt(Math.random()) * Math.min(cw, ch) * .4;
+    const x = cw / 2 + Math.cos(angle) * r;
+    const y = ch / 2 + Math.sin(angle) * r;
+    // interference pattern probability
+    const dx = x - cw / 2, dy = y - ch / 2;
+    const d = Math.sqrt(dx * dx + dy * dy) / (Math.min(cw, ch) * .4);
+    const prob = Math.pow(Math.cos(d * Math.PI * 3), 2) * Math.exp(-d * d * 2);
+    pp.push({ x, y, prob, shown: Math.random() < prob * .5, alpha: Math.random() });
+  }
+}
+
+function drawWP(ts) {
+  // particle accumulation
+  pCtx.fillStyle = '#050510';
+  pCtx.fillRect(0, 0, particleCanvas.width, particleCanvas.height);
+  // slowly reveal particles
+  const count = Math.floor(Math.sin(ts / 3000) * .5 + .5) * pp.length * .3 + pp.length * .2;
+  for (let i = 0; i < Math.min(count, pp.length); i++) {
+    const p = pp[i];
+    if (p.shown || Math.random() < .005) {
+      pCtx.beginPath();
+      pCtx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
+      pCtx.fillStyle = isMeasuring ? `rgba(168,85,247,${.3 + p.alpha * .4})` : `rgba(0,212,255,${.3 + p.alpha * .4})`;
+      pCtx.fill();
+    }
+  }
+
+  // wave interference
+  wCtx.fillStyle = '#050510';
+  wCtx.fillRect(0, 0, waveCanvas.width, waveCanvas.height);
+  const ww = waveCanvas.width, wh = waveCanvas.height;
+  const imgData = wCtx.createImageData(ww, wh);
+  for (let y = 0; y < wh; y++) {
+    for (let x = 0; x < ww; x++) {
+      const nx = (x / ww - .5) * 6, ny = (y / wh - .5) * 4;
+      const phase = isMeasuring ? 0 : wavePhase;
+      const val = Math.pow(Math.cos(nx * 2 + phase) * Math.cos(ny * 1.5 + phase * .7) + 1, 2) * .25;
+      const idx = (y * ww + x) * 4;
+      const c = isMeasuring ? 
+        [168 * val, 85 * val, 247 * val] : 
+        [0, 212 * val, 255 * val];
+      imgData.data[idx] = c[0];
+      imgData.data[idx + 1] = c[1];
+      imgData.data[idx + 2] = c[2];
+      imgData.data[idx + 3] = 255;
+    }
+  }
+  wCtx.putImageData(imgData, 0, 0);
+  wavePhase += .03;
+}
+
+particleCanvas.addEventListener('mouseenter', () => isMeasuring = true);
+particleCanvas.addEventListener('mouseleave', () => isMeasuring = false);
+waveCanvas.addEventListener('mouseenter', () => isMeasuring = true);
+waveCanvas.addEventListener('mouseleave', () => isMeasuring = false);
+
+// ===== UNCERTAINTY =====
+const uncCanvas = document.getElementById('uncertainty-canvas');
+const uCtx = uncCanvas.getContext('2d');
+let uncMouseX = .5;
+
+function resizeUnc() {
+  const w = uncCanvas.clientWidth || 500, h = uncCanvas.clientHeight || 375;
+  uncCanvas.width = w * 2; uncCanvas.height = h * 2;
+  uncCanvas.style.width = w + 'px'; uncCanvas.style.height = h + 'px';
+}
+
+function drawUncertainty() {
+  const w = uncCanvas.width, h = uncCanvas.height;
+  uCtx.fillStyle = '#050510';
+  uCtx.fillRect(0, 0, w, h);
+
+  const uncX = uncMouseX; // 0..1
+  const sigma = .03 + uncX * .25; // position uncertainty
+  const freqUnc = .08 + (1 - uncX) * .25; // momentum uncertainty
+
+  uCtx.beginPath();
+  for (let x = 0; x < w; x++) {
+    const nx = (x / w - .5) * 6;
+    const envelope = Math.exp(-(nx * nx) / (2 * sigma * sigma));
+    const wave = Math.cos(nx * 8 * (1 + freqUnc * 2));
+    // add higher frequencies for momentum uncertainty
+    let wave2 = 0;
+    for (let k = -5; k <= 5; k++) {
+      wave2 += Math.cos(nx * (8 + k * freqUnc * 10)) * Math.exp(-k * k * freqUnc * 2);
+    }
+    wave2 /= 6;
+    const val = envelope * wave2;
+    const y = h / 2 - val * h * .35;
+    if (x === 0) uCtx.moveTo(x, y);
+    else uCtx.lineTo(x, y);
+  }
+  uCtx.strokeStyle = 'rgba(0,212,255,.9)';
+  uCtx.lineWidth = 3;
+  uCtx.stroke();
+
+  // envelope
+  uCtx.beginPath();
+  for (let x = 0; x < w; x++) {
+    const nx = (x / w - .5) * 6;
+    const env = Math.exp(-(nx * nx) / (2 * sigma * sigma)) * h * .35;
+    if (x === 0) uCtx.moveTo(x, h / 2 - env);
+    else uCtx.lineTo(x, h / 2 - env);
+  }
+  for (let x = w - 1; x >= 0; x--) {
+    const nx = (x / w - .5) * 6;
+    const env = Math.exp(-(nx * nx) / (2 * sigma * sigma)) * h * .35;
+    uCtx.lineTo(x, h / 2 + env);
+  }
+  uCtx.closePath();
+  uCtx.fillStyle = 'rgba(0,212,255,.04)';
+  uCtx.fill();
+
+  // Δx and Δp bars updated
+  document.getElementById('dx-bar').style.width = ((1 - uncX) * 90 + 5) + '%';
+  document.getElementById('dp-bar').style.width = (uncX * 90 + 5) + '%';
+  document.getElementById('dx-value').textContent = (1 - uncX).toFixed(2);
+  document.getElementById('dp-value').textContent = uncX.toFixed(2);
+}
+
+uncCanvas.addEventListener('mousemove', e => {
+  const rect = uncCanvas.getBoundingClientRect();
+  uncMouseX = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+  drawUncertainty();
+});
+
+// ===== TUNNELING =====
+const tunnelCanvas = document.getElementById('tunnel-canvas');
+const tCtx = tunnelCanvas.getContext('2d');
+let tunnelEnergy = .4;
+let tunnelParticles = [];
+let tunnelTime = 0;
+
+function resizeTunnel() {
+  const w = tunnelCanvas.clientWidth || 700, h = tunnelCanvas.clientHeight || 394;
+  tunnelCanvas.width = w * 2; tunnelCanvas.height = h * 2;
+  tunnelCanvas.style.width = w + 'px'; tunnelCanvas.style.height = h + 'px';
+}
+
+function initTunnel() {
+  resizeTunnel();
+  tunnelParticles = [];
+  const w = tunnelCanvas.width, h = tunnelCanvas.height;
+  for (let i = 0; i < 60; i++) {
+    const x = Math.random() * w * .35;
+    const y = h * .2 + Math.random() * h * .6;
+    const speed = .5 + Math.random() * 1.5;
+    tunnelParticles.push({
+      x, y,
+      baseY: y,
+      speed,
+      phase: Math.random() * Math.PI * 2,
+      tunneled: false,
+      reflect: false,
+      color: Math.random() > .5 ? 'cyan' : 'purple'
+    });
+  }
+}
+
+function drawTunnel() {
+  const w = tunnelCanvas.width, h = tunnelCanvas.height;
+  tCtx.fillStyle = '#050510';
+  tCtx.fillRect(0, 0, w, h);
+
+  // barrier
+  const bx = w * .4, bw = w * .2, bh = h * .6 * (1 - tunnelEnergy * .4);
+  tCtx.fillStyle = 'rgba(168,85,247,.15)';
+  tCtx.fillRect(bx, h / 2 - bh / 2, bw, bh);
+  tCtx.strokeStyle = 'rgba(168,85,247,.5)';
+  tCtx.lineWidth = 2;
+  tCtx.strokeRect(bx, h / 2 - bh / 2, bw, bh);
+
+  // barrier label
+  tCtx.fillStyle = 'rgba(168,85,247,.4)';
+  tCtx.font = `${w * .022}px system-ui`;
+  tCtx.textAlign = 'center';
+  tCtx.fillText('Потенциальный барьер', w / 2, h * .12);
+
+  // energy level line
+  const eY = h / 2 + bh / 2 - h * .35 * tunnelEnergy;
+  tCtx.setLineDash([6, 6]);
+  tCtx.strokeStyle = tunnelEnergy > .6 ? 'rgba(0,212,255,.4)' : 'rgba(255,100,100,.3)';
+  tCtx.lineWidth = 1.5;
+  tCtx.beginPath();
+  tCtx.moveTo(w * .05, eY);
+  tCtx.lineTo(w * .95, eY);
+  tCtx.stroke();
+  tCtx.setLineDash([]);
+  tCtx.fillStyle = tunnelEnergy > .6 ? 'rgba(0,212,255,.5)' : 'rgba(255,100,100,.4)';
+  tCtx.font = `${w * .018}px system-ui`;
+  tCtx.textAlign = 'left';
+  tCtx.fillText(`E = ${Math.round(tunnelEnergy * 100)}%`, w * .05, eY - 8);
+
+  // particles
+  const barrierTop = h / 2 - bh / 2;
+  const energyOk = tunnelEnergy > .55;
+
+  tunnelParticles.forEach(p => {
+    p.x += p.speed * (tunnelEnergy * .8 + .3);
+
+    // tunnel or reflect
+    if (p.x > bx && p.x < bx + bw && !p.tunneled && !p.reflect) {
+      const prob = Math.max(0, tunnelEnergy - .45) * 1.8;
+      if (Math.random() < prob * .3) {
+        p.tunneled = true;
+        // wave-like effect: teleport past barrier with offset
+        p.x = bx + bw + 10 + Math.random() * 20;
+        p.y = p.baseY + (Math.random() - .5) * 20;
+      } else {
+        p.reflect = true;
+        p.speed *= -.7;
+      }
+    }
+
+    // wrap around
+    if (p.x < -20) { p.x = w + 20; p.reflect = false; p.tunneled = false; }
+    if (p.x > w + 20) { p.x = -20; p.reflect = false; p.tunneled = false; }
+
+    const isTunneling = p.x > bx && p.x < bx + bw && !p.reflect && !p.tunneled;
+    const alpha = isTunneling ? .3 : .7;
+    const color = p.color === 'cyan' ? `rgba(0,212,255,${alpha})` : `rgba(168,85,247,${alpha})`;
+
+    // wave-like wobble
+    const wobble = Math.sin(p.phase + tunnelTime * .02) * 3;
+    const py = p.reflect ? p.baseY + wobble + (p.x < bx ? Math.sin(p.x * .1) * 5 : 0) : p.baseY + wobble;
+
+    // glow
+    const grad = tCtx.createRadialGradient(p.x, py, 0, p.x, py, 8);
+    grad.addColorStop(0, color);
+    grad.addColorStop(1, 'rgba(0,0,0,0)');
+    tCtx.fillStyle = grad;
+    tCtx.beginPath();
+    tCtx.arc(p.x, py, 8, 0, Math.PI * 2);
+    tCtx.fill();
+
+    // core
+    tCtx.beginPath();
+    tCtx.arc(p.x, py, 3, 0, Math.PI * 2);
+    tCtx.fillStyle = color;
+    tCtx.fill();
+  });
+
+  // probability label
+  const probTunnel = Math.max(0, tunnelEnergy - .45) * 1.8;
+  document.getElementById('tunnel-prob').textContent = Math.min(99.9, probTunnel * 100).toFixed(1) + '%';
+}
+
+// tunnel slider
+document.getElementById('energy-slider').addEventListener('input', e => {
+  tunnelEnergy = parseInt(e.target.value) / 100;
+  document.getElementById('energy-label').textContent = Math.round(tunnelEnergy * 100) + '%';
+});
+
+// ===== SUPERPOSITION =====
+const stateBoth = document.getElementById('state-both');
+const stateA = document.getElementById('state-a');
+const stateB = document.getElementById('state-b');
+
+stateBoth.addEventListener('mouseenter', () => {
+  const collapse = Math.random() > .5;
+  stateBoth.className = collapse ? 'super-state collapsed-a' : 'super-state collapsed-b';
+  stateBoth.innerHTML = collapse
+    ? '<span class="emoji">◉</span><span>Спин ↑</span>'
+    : '<span class="emoji">◉</span><span>Спин ↓</span>';
+});
+stateBoth.addEventListener('mouseleave', () => {
+  stateBoth.className = 'super-state both';
+  stateBoth.innerHTML = '<span class="emoji">◉</span><span>Суперпозиция</span>';
+});
+
+// ===== ENTANGLEMENT =====
+const entCanvas = document.getElementById('entangle-canvas');
+const eCtx = entCanvas.getContext('2d');
+let entSpin = 1; // 1 or -1
+let entAngleA = 0, entAngleB = Math.PI;
+let entPulse = 0;
+
+function resizeEnt() {
+  const w = entCanvas.clientWidth || 600, h = entCanvas.clientHeight || 300;
+  entCanvas.width = w * 2; entCanvas.height = h * 2;
+  entCanvas.style.width = w + 'px'; entCanvas.style.height = h + 'px';
+}
+
+function drawEntanglement(ts) {
+  const w = entCanvas.width, h = entCanvas.height;
+  eCtx.fillStyle = '#050510';
+  eCtx.fillRect(0, 0, w, h);
+
+  const cxA = w * .25, cxB = w * .75, cy = h / 2;
+  const r = Math.min(w, h) * .08;
+
+  // connection line
+  eCtx.beginPath();
+  eCtx.moveTo(cxA + r, cy);
+  eCtx.lineTo(cxB - r, cy);
+  eCtx.strokeStyle = `rgba(0,212,255,${.15 + Math.sin(entPulse) * .05})`;
+  eCtx.lineWidth = 2;
+  eCtx.setLineDash([8, 8]);
+  eCtx.stroke();
+  eCtx.setLineDash([]);
+
+  // glow line on top
+  eCtx.beginPath();
+  eCtx.moveTo(cxA + r, cy);
+  eCtx.lineTo(cxB - r, cy);
+  eCtx.strokeStyle = `rgba(0,212,255,${.05 + Math.sin(entPulse) * .03})`;
+  eCtx.lineWidth = 6;
+  eCtx.stroke();
+
+  // particles
+  function drawParticle(cx, angle, label) {
+    const dotX = cx + Math.cos(angle) * r * .6;
+    const dotY = cy + Math.sin(angle) * r * .6;
+
+    // glow
+    const grad = eCtx.createRadialGradient(cx, cy, 0, cx, cy, r * 2);
+    grad.addColorStop(0, `rgba(16,185,129,${.15 + Math.sin(entPulse) * .05})`);
+    grad.addColorStop(1, 'rgba(0,0,0,0)');
+    eCtx.fillStyle = grad;
+    eCtx.beginPath();
+    eCtx.arc(cx, cy, r * 2, 0, Math.PI * 2);
+    eCtx.fill();
+
+    // orbit ring
+    eCtx.beginPath();
+    eCtx.arc(cx, cy, r * .6, 0, Math.PI * 2);
+    eCtx.strokeStyle = 'rgba(16,185,129,.2)';
+    eCtx.lineWidth = 1;
+    eCtx.stroke();
+
+    // particle
+    eCtx.beginPath();
+    eCtx.arc(dotX, dotY, r * .25, 0, Math.PI * 2);
+    eCtx.fillStyle = '#10b981';
+    eCtx.fill();
+    eCtx.shadowColor = 'rgba(16,185,129,.6)';
+    eCtx.shadowBlur = 15;
+    eCtx.beginPath();
+    eCtx.arc(dotX, dotY, r * .15, 0, Math.PI * 2);
+    eCtx.fillStyle = '#34d399';
+    eCtx.fill();
+    eCtx.shadowBlur = 0;
+
+    // label
+    eCtx.fillStyle = 'rgba(16,185,129,.6)';
+    eCtx.font = `${w * .022}px system-ui`;
+    eCtx.textAlign = 'center';
+    eCtx.fillText(label, cx, cy + r * 1.8);
+
+    // spin arrow
+    const arrowLen = r * .8;
+    const ax = cx + Math.cos(angle) * arrowLen;
+    const ay = cy + Math.sin(angle) * arrowLen;
+    eCtx.beginPath();
+    eCtx.moveTo(cx, cy);
+    eCtx.lineTo(ax, ay);
+    eCtx.strokeStyle = 'rgba(255,255,255,.3)';
+    eCtx.lineWidth = 1.5;
+    eCtx.stroke();
+  }
+
+  const spinAngle = entSpin > 0 ? -Math.PI / 4 : Math.PI / 4;
+  drawParticle(cxA, entAngleA + spinAngle, 'Частица A');
+  drawParticle(cxB, entAngleB + spinAngle, 'Частица B');
+
+  // spin label
+  eCtx.fillStyle = 'rgba(255,255,255,.5)';
+  eCtx.font = `${w * .028}px system-ui`;
+  eCtx.textAlign = 'center';
+  eCtx.fillText(entSpin > 0 ? '↑ Спин: +½' : '↓ Спин: −½', w / 2, h * .88);
+}
+
+entCanvas.addEventListener('click', () => {
+  entSpin *= -1;
+  // instant change — spooky action!
+  entPulse = 0;
+});
+
+// ===== RAF LOOP =====
+function initAll() {
+  // initial sizes
+  initHero();
+  initWP();
+  resizeUnc();
+  initTunnel();
+  resizeEnt();
+  // initial draws
+  drawUncertainty();
+
+  let lastTs = 0;
+  function loop(ts) {
+    const dt = ts - lastTs;
+    lastTs = ts;
+    tunnelTime += dt;
+    entPulse += dt * .003;
+
+    drawHero();
+
+    // only draw WP when visible
+    const wpSection = document.getElementById('wave-particle');
+    const wpRect = wpSection.getBoundingClientRect();
+    if (wpRect.bottom > 0 && wpRect.top < innerHeight) {
+      drawWP(ts);
+    }
+
+    // tunnel
+    const tunnelSection = document.getElementById('tunneling');
+    const tRect = tunnelSection.getBoundingClientRect();
+    if (tRect.bottom > 0 && tRect.top < innerHeight) {
+      drawTunnel();
+    }
+
+    // entanglement
+    const entSection = document.getElementById('entanglement');
+    const eRect = entSection.getBoundingClientRect();
+    if (eRect.bottom > 0 && eRect.top < innerHeight) {
+      drawEntanglement(ts);
+    }
+
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+}
+
+// ===== RESIZE =====
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    initHero();
+    resizeWPCanvases();
+    resizeUnc();
+    resizeTunnel();
+    resizeEnt();
+    drawUncertainty();
+  }, 200);
+});
+
+// ===== GO =====
+initAll();
+</script>
+</body>
+</html>

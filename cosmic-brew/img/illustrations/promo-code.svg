@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150" width="300" height="150">
+  <rect x="10" y="20" width="280" height="110" rx="8" fill="none" stroke="#ffcc00" stroke-width="2"/>
+  <path d="M10 30 L150 60 L290 30" fill="none" stroke="#ffcc00" stroke-width="1.5"/>
+  <polygon points="150,20 130,50 170,50" fill="#ffcc00"/>
+  <text x="150" y="85" fill="#ffcc00" font-size="14" text-anchor="middle" font-family="monospace" font-weight="bold">ПРОМОКОД</text>
+  <text x="150" y="105" fill="#fff" font-size="18" text-anchor="middle" font-family="monospace" font-weight="bold" id="promo-code">COSMIC20</text>
+</svg>

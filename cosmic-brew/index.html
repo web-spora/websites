@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cosmic Brew — путешествие к галактике вкуса</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== 1. HEADER ===== -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="img/illustrations/logo-horizontal.svg" alt="Cosmic Brew" height="32">
+      </a>
+      <nav class="nav" id="nav">
+        <a href="#hero">Главная</a>
+        <a href="#collections">Коллекции</a>
+        <a href="#story">История</a>
+        <a href="#brew-guide">Гид</a>
+        <a href="#game">Игра</a>
+        <a href="#footer">Контакты</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== 2. HERO SECTION ===== -->
+  <section class="hero" id="hero">
+    <canvas class="hero-particles" id="particles"></canvas>
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <h1 class="hero__title">Cosmic Brew:<br>путешествие к галактике вкуса</h1>
+        <p class="hero__subtitle">Крафтовый кофе из самых отдалённых уголков Вселенной</p>
+        <a href="#collections" class="btn btn--primary">Исследовать коллекции</a>
+      </div>
+      <div class="hero__image">
+        <img src="img/illustrations/hero-planet.svg" alt="Планета-кофе" class="hero__planet">
+        <div class="hero__glow"></div>
+      </div>
+    </div>
+    <div class="hero__stars" id="heroStars"></div>
+  </section>
+
+  <!-- ===== 3. COLLECTIONS ===== -->
+  <section class="section collections" id="collections">
+    <div class="container">
+      <h2 class="section__title">Звёздные коллекции</h2>
+      <p class="section__subtitle">Выберите свой сорт среди планет кофейной вселенной</p>
+
+      <div class="filter" id="filter">
+        <button class="filter__btn active" data-filter="all">Все</button>
+        <button class="filter__btn" data-filter="africa">Африка</button>
+        <button class="filter__btn" data-filter="asia">Азия</button>
+        <button class="filter__btn" data-filter="america">Америка</button>
+        <button class="filter__btn" data-filter="intense">Интенсивные</button>
+      </div>
+
+      <div class="grid products" id="products">
+        <div class="product-card" data-category="africa intense" data-name="Эфиопия">
+          <img src="img/illustrations/product-ethiopia.svg" alt="Эфиопия" class="product-card__img">
+          <div class="product-card__badge">Хит</div>
+          <h3 class="product-card__title">Эфиопия Иргачеффе</h3>
+          <p class="product-card__origin">Африка</p>
+          <div class="product-card__icons">
+            <img src="img/icons/star.svg" alt="Интенсивность" title="Интенсивность 7/10">
+            <img src="img/icons/globe.svg" alt="Происхождение">
+            <img src="img/icons/berry.svg" alt="Ягодные ноты">
+          </div>
+          <p class="product-card__desc">Цветочный, с нотами бергамота и черники</p>
+          <span class="product-card__price">950 ₽</span>
+        </div>
+        <div class="product-card" data-category="africa intense" data-name="Кения">
+          <img src="img/illustrations/product-kenya.svg" alt="Кения" class="product-card__img">
+          <div class="product-card__badge">Новинка</div>
+          <h3 class="product-card__title">Кения Аб</h3>
+          <p class="product-card__origin">Африка</p>
+          <div class="product-card__icons">
+            <img src="img/icons/star.svg" alt="Интенсивность" title="Интенсивность 8/10">
+            <img src="img/icons/globe.svg" alt="Происхождение">
+            <img src="img/icons/citrus.svg" alt="Цитрусовые ноты">
+          </div>
+          <p class="product-card__desc">Винный, с клюквой и чёрной смородиной</p>
+          <span class="product-card__price">1 050 ₽</span>
+        </div>
+        <div class="product-card" data-category="america" data-name="Колумбия">
+          <img src="img/illustrations/product-colombia.svg" alt="Колумбия" class="product-card__img">
+          <h3 class="product-card__title">Колумбия Уила</h3>
+          <p class="product-card__origin">Южная Америка</p>
+          <div class="product-card__icons">
+            <img src="img/icons/star.svg" alt="Интенсивность" title="Интенсивность 6/10">
+            <img src="img/icons/globe.svg" alt="Происхождение">
+            <img src="img/icons/chocolate.svg" alt="Шоколадные ноты">
+          </div>
+          <p class="product-card__desc">Карамель, орех, молочный шоколад</p>
+          <span class="product-card__price">890 ₽</span>
+        </div>
+        <div class="product-card" data-category="america" data-name="Гватемала">
+          <img src="img/illustrations/product-guatemala.svg" alt="Гватемала" class="product-card__img">
+          <h3 class="product-card__title">Гватемала Антигуа</h3>
+          <p class="product-card__origin">Центральная Америка</p>
+          <div class="product-card__icons">
+            <img src="img/icons/star.svg" alt="Интенсивность" title="Интенсивность 7/10">
+            <img src="img/icons/globe.svg" alt="Происхождение">
+            <img src="img/icons/chocolate.svg" alt="Шоколадные ноты">
+          </div>
+          <p class="product-card__desc">Какао, вишня, табак</p>
+          <span class="product-card__price">990 ₽</span>
+        </div>
+        <div class="product-card" data-category="america intense" data-name="Бразилия">
+          <img src="img/illustrations/product-brazil.svg" alt="Бразилия" class="product-card__img">
+          <div class="product-card__badge">Хит</div>
+          <h3 class="product-card__title">Бразилия Серрадо</h3>
+          <p class="product-card__origin">Южная Америка</p>
+          <div class="product-card__icons">
+            <img src="img/icons/star.svg" alt="Интенсивность" title="Интенсивность 9/10">
+            <img src="img/icons/globe.svg" alt="Происхождение">
+            <img src="img/icons/chocolate.svg" alt="Шоколадные ноты">
+          </div>
+          <p class="product-card__desc">Тёмный шоколад, орех, карамель</p>
+          <span class="product-card__price">850 ₽</span>
+        </div>
+        <div class="product-card" data-category="america" data-name="Коста-Рика">
+          <img src="img/illustrations/product-costa.svg" alt="Коста-Рика" class="product-card__img">
+          <h3 class="product-card__title">Коста-Рика Таррасу</h3>
+          <p class="product-card__origin">Центральная Америка</p>
+          <div class="product-card__icons">
+            <img src="img/icons/star.svg" alt="Интенсивность" title="Интенсивность 5/10">
+            <img src="img/icons/globe.svg" alt="Происхождение">
+            <img src="img/icons/citrus.svg" alt="Цитрусовые ноты">
+          </div>
+          <p class="product-card__desc">Цитрус, мёд, персик</p>
+          <span class="product-card__price">920 ₽</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. STORY SECTION ===== -->
+  <section class="section story" id="story">
+    <div class="container">
+      <h2 class="section__title">Путь к звёздам: наша история</h2>
+      <p class="section__subtitle">Хроника Cosmic Brew</p>
+
+      <div class="timeline" id="timeline">
+        <div class="timeline__item">
+          <div class="timeline__icon">
+            <img src="img/icons/timeline-idea.svg" alt="Идея">
+          </div>
+          <div class="timeline__content">
+            <span class="timeline__year">2018</span>
+            <h3>Идея</h3>
+            <p>Два друга-астронома решают объединить любовь к кофе и космосу</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__icon">
+            <img src="img/icons/timeline-rocket.svg" alt="Запуск">
+          </div>
+          <div class="timeline__content">
+            <span class="timeline__year">2019</span>
+            <h3>Запуск</h3>
+            <p>Первая обжарка на собственном оборудовании и открытие крафтовой лаборатории</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__icon">
+            <img src="img/icons/timeline-tree.svg" alt="Первый урожай">
+          </div>
+          <div class="timeline__content">
+            <span class="timeline__year">2021</span>
+            <h3>Первый урожай</h3>
+            <p>Прямой контракт с фермерами в Эфиопии — первые зёрна под собственной маркой</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__icon">
+            <img src="img/icons/timeline-success.svg" alt="Успех">
+          </div>
+          <div class="timeline__content">
+            <span class="timeline__year">2024</span>
+            <h3>Признание</h3>
+            <p>Cosmic Brew входит в топ‑5 крафтовых обжарщиков России</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. BREW GUIDE ===== -->
+  <section class="section brew-guide" id="brew-guide">
+    <div class="container">
+      <h2 class="section__title">Космические методы заваривания</h2>
+      <p class="section__subtitle">Выберите способ и следуйте инструкции</p>
+
+      <div class="tabs" id="tabs">
+        <button class="tabs__btn active" data-method="aeropress">Аэропресс</button>
+        <button class="tabs__btn" data-method="french">Френч-пресс</button>
+        <button class="tabs__btn" data-method="pourover">Пуровер</button>
+        <button class="tabs__btn" data-method="drip">Кофеварка</button>
+      </div>
+
+      <div class="brew-content active" id="brew-aeropress">
+        <div class="brew-content__inner">
+          <img src="img/brewing/aeropress.svg" alt="Аэропресс" class="brew-content__img">
+          <div class="brew-content__steps">
+            <div class="step"><span class="step__num">1</span><p>Вставьте бумажный фильтр, смочите его горячей водой</p></div>
+            <div class="step"><span class="step__num">2</span><p>Засыпьте 17 г кофе среднего помола</p></div>
+            <div class="step"><span class="step__num">3</span><p>Залейте 220 мл воды (92°C), перемешайте</p></div>
+            <div class="step"><span class="step__num">4</span><p>Через 1 мин начните медленно давить поршень (30 сек)</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="brew-content" id="brew-french">
+        <div class="brew-content__inner">
+          <img src="img/brewing/french-press.svg" alt="Френч-пресс" class="brew-content__img">
+          <div class="brew-content__steps">
+            <div class="step"><span class="step__num">1</span><p>Засыпьте 18 г кофе грубого помола</p></div>
+            <div class="step"><span class="step__num">2</span><p>Залейте 300 мл воды (94°C)</p></div>
+            <div class="step"><span class="step__num">3</span><p>Перемешайте, накройте крышкой, ждите 4 мин</p></div>
+            <div class="step"><span class="step__num">4</span><p>Медленно опустите поршень и разливайте</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="brew-content" id="brew-pourover">
+        <div class="brew-content__inner">
+          <img src="img/brewing/pourover.svg" alt="Пуровер" class="brew-content__img">
+          <div class="brew-content__steps">
+            <div class="step"><span class="step__num">1</span><p>Вставьте фильтр V60, смочите и прогрейте воронку</p></div>
+            <div class="step"><span class="step__num">2</span><p>Засыпьте 15 г кофе среднего помола</p></div>
+            <div class="step"><span class="step__num">3</span><p>Залейте 30 мл воды (90°C), подождите 30 сек (bloom)</p></div>
+            <div class="step"><span class="step__num">4</span><p>Заливайте оставшиеся 220 мл спиральными движениями</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="brew-content" id="brew-drip">
+        <div class="brew-content__inner">
+          <img src="img/brewing/drip-machine.svg" alt="Капельная кофеварка" class="brew-content__img">
+          <div class="brew-content__steps">
+            <div class="step"><span class="step__num">1</span><p>Засыпьте 20 г кофе среднего помола в фильтр</p></div>
+            <div class="step"><span class="step__num">2</span><p>Залейте 400 мл воды в резервуар</p></div>
+            <div class="step"><span class="step__num">3</span><p>Включите кофеварку — процесс займёт около 5 мин</p></div>
+            <div class="step"><span class="step__num">4</span><p>Наслаждайтесь чистым и сбалансированным вкусом</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6. MINI-GAME ===== -->
+  <section class="section game" id="game">
+    <div class="container">
+      <h2 class="section__title">Собери созвездие и получи скидку!</h2>
+      <p class="section__subtitle">Соедините все кофейные зёрна линиями — и промокод ваш!</p>
+
+      <div class="game__wrapper">
+        <div class="game__board" id="gameBoard">
+          <canvas id="gameCanvas"></canvas>
+          <div class="game__stars" id="gameStars"></div>
+          <div class="game__message" id="gameMessage">
+            <h3>Поздравляем!</h3>
+            <p>Вы собрали созвездие Cosmic Brew</p>
+            <div class="game__promo">
+              <img src="img/illustrations/promo-code.svg" alt="Промокод">
+              <span class="game__code" id="promoCode">COSMIC20</span>
+            </div>
+            <button class="btn btn--primary" id="gameReset">Сыграть снова</button>
+          </div>
+          <div class="game__hint" id="gameHint">Соедините все 6 звёзд в созвездие — кликайте по зёрнам по порядку!</div>
+        </div>
+        <div class="game__counter" id="gameCounter">
+          <span>Соединено: <strong id="connectedCount">0</strong>/6</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 7. FOOTER ===== -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="img/illustrations/logo-horizontal.svg" alt="Cosmic Brew" height="36">
+          <p>Крафтовый кофе, вдохновлённый космосом</p>
+        </div>
+        <div class="footer__links">
+          <h4>Разделы</h4>
+          <a href="#hero">Главная</a>
+          <a href="#collections">Коллекции</a>
+          <a href="#story">История</a>
+          <a href="#brew-guide">Гид по завариванию</a>
+        </div>
+        <div class="footer__contacts">
+          <h4>Контакты</h4>
+          <p>Москва, ул. Звёздная, 42</p>
+          <p>+7 (495) 123-45-67</p>
+          <p>hello@cosmicbrew.ru</p>
+        </div>
+        <div class="footer__social">
+          <h4>Мы в соцсетях</h4>
+          <div class="footer__social-icons">
+            <a href="#" aria-label="Telegram"><img src="img/icons/social-telegram.svg" alt="Telegram"></a>
+            <a href="#" aria-label="Instagram"><img src="img/icons/social-instagram.svg" alt="Instagram"></a>
+            <a href="#" aria-label="VK"><img src="img/icons/social-vk.svg" alt="VK"></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Cosmic Brew. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
