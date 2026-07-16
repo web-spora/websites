@@ -1,0 +1,83 @@
+:root {
+  /* Colors */
+  --wysiwyg-bg: #ffffff;
+  --wysiwyg-text: #1a1a2e;
+  --wysiwyg-border: #e0e0e0;
+  --wysiwyg-focus-border: #3b82f6;
+  --wysiwyg-placeholder: #9ca3af;
+
+  /* Toolbar */
+  --wysiwyg-toolbar-bg: #ffffff;
+  --wysiwyg-toolbar-border: #e5e7eb;
+  --wysiwyg-toolbar-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --wysiwyg-btn-bg: transparent;
+  --wysiwyg-btn-hover: #f3f4f6;
+  --wysiwyg-btn-active: #dbeafe;
+  --wysiwyg-btn-text: #374151;
+  --wysiwyg-btn-disabled: #d1d5db;
+  --wysiwyg-divider: #e5e7eb;
+
+  /* Modal */
+  --wysiwyg-modal-bg: #ffffff;
+  --wysiwyg-modal-overlay: rgba(0, 0, 0, 0.5);
+  --wysiwyg-input-bg: #ffffff;
+  --wysiwyg-input-border: #d1d5db;
+  --wysiwyg-input-focus: #3b82f6;
+  --wysiwyg-btn-primary: #3b82f6;
+  --wysiwyg-btn-primary-hover: #2563eb;
+  --wysiwyg-btn-secondary: #6b7280;
+
+  /* Table */
+  --wysiwyg-table-border: #e5e7eb;
+  --wysiwyg-table-header-bg: #f9fafb;
+  --wysiwyg-cell-padding: 8px 12px;
+
+  /* Read-only */
+  --wysiwyg-ro-overlay: rgba(249, 250, 251, 0.9);
+  --wysiwyg-ro-btn: #3b82f6;
+
+  /* Spacing & Sizing */
+  --wysiwyg-toolbar-width: 280px;
+  --wysiwyg-btn-size: 36px;
+  --wysiwyg-border-radius: 6px;
+  --wysiwyg-transition: 150ms ease;
+  --wysiwyg-z-toolbar: 100;
+  --wysiwyg-z-modal: 200;
+  --wysiwyg-z-overlay: 150;
+
+  /* Typography */
+  --wysiwyg-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --wysiwyg-font-mono: 'SF Mono', 'Fira Code', 'Fira Mono', Menlo, Consolas, monospace;
+  --wysiwyg-line-height: 1.6;
+  --wysiwyg-font-size: 15px;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --wysiwyg-bg: #1f2937;
+    --wysiwyg-text: #f3f4f6;
+    --wysiwyg-border: #374151;
+    --wysiwyg-focus-border: #60a5fa;
+    --wysiwyg-placeholder: #6b7280;
+
+    --wysiwyg-toolbar-bg: #1f2937;
+    --wysiwyg-toolbar-border: #374151;
+    --wysiwyg-toolbar-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --wysiwyg-btn-hover: #374151;
+    --wysiwyg-btn-active: #1e3a5f;
+    --wysiwyg-btn-text: #e5e7eb;
+    --wysiwyg-btn-disabled: #4b5563;
+    --wysiwyg-divider: #374151;
+
+    --wysiwyg-modal-bg: #1f2937;
+    --wysiwyg-input-bg: #111827;
+    --wysiwyg-input-border: #374151;
+    --wysiwyg-btn-secondary: #9ca3af;
+
+    --wysiwyg-table-border: #374151;
+    --wysiwyg-table-header-bg: #111827;
+
+    --wysiwyg-ro-overlay: rgba(17, 24, 39, 0.9);
+  }
+}

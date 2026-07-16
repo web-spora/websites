@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WYSIWYG Editor — Демо</title>
+  <link rel="stylesheet" href="../styles/variables.css">
+  <link rel="stylesheet" href="../styles/editor.css">
+  <link rel="stylesheet" href="../styles/toolbar.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: #f8fafc;
+      color: #1a1a2e;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #0f172a;
+        color: #e2e8f0;
+      }
+    }
+
+    .demo-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .demo-header {
+      margin-bottom: 32px;
+    }
+
+    .demo-header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .demo-header p {
+      color: #64748b;
+      font-size: 15px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .demo-header p {
+        color: #94a3b8;
+      }
+    }
+
+    .demo-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+      padding: 16px;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .demo-controls {
+        background: #1e293b;
+        border-color: #334155;
+      }
+    }
+
+    .demo-controls button {
+      padding: 8px 16px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      background: #fff;
+      color: #1a1a2e;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .demo-controls button:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .demo-controls button {
+        background: #334155;
+        border-color: #475569;
+        color: #e2e8f0;
+      }
+      .demo-controls button:hover {
+        background: #475569;
+      }
+    }
+
+    .demo-output {
+      margin-top: 20px;
+      padding: 16px;
+      background: #1e293b;
+      color: #e2e8f0;
+      border-radius: 8px;
+      font-family: 'SF Mono', 'Fira Code', Menlo, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 400px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .demo-output.visible {
+      display: block;
+    }
+
+    .demo-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #64748b;
+      cursor: pointer;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .demo-label {
+        color: #94a3b8;
+      }
+    }
+
+    .demo-label input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+    }
+
+    #editor {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <div class="demo-header">
+      <h1>Редактор текста</h1>
+      <p>WYSIWYG редактор с плавающим тулбаром, таблицами, эмбедами и очисткой HTML.</p>
+    </div>
+
+    <div id="editor"></div>
+
+    <div class="demo-controls">
+      <button id="get-content" title="Получить HTML">📋 Получить HTML</button>
+      <button id="toggle-readonly">🔒 Режим чтения</button>
+      <button id="clear">🗑 Очистить</button>
+      <label class="demo-label">
+        <input type="checkbox" id="show-html">
+        Показать HTML
+      </label>
+    </div>
+
+    <pre id="html-output" class="demo-output"></pre>
+  </div>
+
+  <script type="module" src="demo.js"></script>
+</body>
+</html>
