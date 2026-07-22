@@ -3,7 +3,7 @@ const ORGANIZATIONS = [
   { gid: '0', name: 'ООО Рустранс-Логистик' },
   { gid: '1729447566', name: 'ИП Трошкина' }
 ];
-const MAX_COLS = 14;
+const MAX_COLS = 20;
 const container = document.getElementById('container');
 const summary = document.getElementById('summary');
 const filterOrg = document.getElementById('filter-org');
@@ -290,6 +290,7 @@ function onDataLoaded() {
   render();
   cartSync();
   cartRender();
+  initPhotoModal();
 }
 
 function render() {
@@ -323,6 +324,9 @@ function render() {
     var name = '';
     var photoHtml = '';
     var restHtml = '';
+    var defectText = '';
+    var priceRegular = '';
+    var priceUcenka = '';
 
     fields.forEach(f => {
       var v = f.value + '';
@@ -338,9 +342,18 @@ function render() {
         return;
       }
 
+      if (f.label === 'Остаток' || f.label === 'Описание дефекта' || f.label === 'Цена уценки' || f.label === 'Обычная цена') {
+        if (f.label === 'Описание дефекта') defectText = v;
+        else if (f.label === 'Цена уценки') priceUcenka = v;
+        else if (f.label === 'Обычная цена') priceRegular = v;
+        return;
+      }
+
       if (v.indexOf('drive.google.com/file/d/') !== -1) {
         var id = (v.match(/\/d\/([^\/]+)/) || [])[1] || '';
-        photoHtml = '<div class="photo-wrap"><a href="' + v + '" target="_blank" rel="noopener"><img class="thumb" src="https://drive.google.com/thumbnail?id=' + id + '&sz=w200" alt="фото"><div class="photo-hint">Увеличить</div></a></div>';
+        photoHtml = '<div class="photo-wrap" data-photo="' + esc(v) + '">' +
+          (defectText ? '<div class="defect-overlay">' + esc(defectText) + '</div>' : '') +
+          '<img class="thumb" src="https://drive.google.com/thumbnail?id=' + id + '&sz=w200" alt="фото"><div class="photo-hint">Увеличить</div></div>';
       } else if (v.indexOf('http://') === 0 || v.indexOf('https://') === 0) {
         restHtml += '<div class="field"><span class="label">' + f.label + ':</span> <a href="' + v + '" target="_blank" rel="noopener">Перейти к фото</a></div>';
       } else {
@@ -348,9 +361,22 @@ function render() {
       }
     });
 
-    var cardHtml = photoHtml || '<div class="no-photo">Фото ещё нет</div>';
+    if (photoHtml) {
+      var cardHtml = photoHtml;
+    } else {
+      cardHtml = '<div class="photo-wrap">' +
+        (defectText ? '<div class="defect-overlay">' + esc(defectText) + '</div>' : '') +
+        '<div class="no-photo">Фото ещё нет</div></div>';
+    }
     if (article) cardHtml += '<div class="article" data-copy-article="' + esc(article) + '" title="Нажмите, чтобы скопировать">' + article + '</div>';
     if (name) cardHtml += '<div class="product-name">' + name + '</div>';
+
+    var pu = priceUcenka || '0';
+    var pr = priceRegular || '0';
+    cardHtml += '<div class="price-block">' +
+      '<div class="price-row"><span class="price-label">Обычная цена:</span> <span class="price-old">' + esc(pr) + ' ₽</span></div>' +
+      '<div class="price-row"><span class="price-label">Цена уценки:</span> <span class="price-new">' + esc(pu) + ' ₽</span></div></div>';
+
     cardHtml += '<div class="spoiler-btn" data-spoiler>Подробнее <span class="spoiler-arrow">▼</span></div>';
     cardHtml += '<div class="spoiler-content">' + restHtml + '</div>';
 
@@ -362,6 +388,7 @@ function render() {
       var inCartItem = cart.find(function(i) { return i.article === article; });
       var inCartQty = inCartItem ? inCartItem.qty : 0;
       var remaining = qtyVal - inCartQty;
+      cardHtml += '<div class="stock-label">В наличии: ' + qtyVal + ' шт.</div>';
       cardHtml += '<div class="cart-controls">' +
         '<div class="cart-control-qty">' +
         '<button data-article="' + safeArticle + '" data-delta="-1"' + (inCartQty > 0 ? '' : ' disabled') + '>−</button>' +
@@ -392,6 +419,37 @@ function copyArticle(el) {
   }
 }
 
+function initPhotoModal() {
+  if (document.getElementById('photoModal')) return;
+  var modal = document.createElement('div');
+  modal.id = 'photoModal';
+  modal.className = 'photo-modal';
+  modal.innerHTML = '<span class="photo-modal-close" id="photoModalClose">✕</span><img class="photo-modal-img" id="photoModalImg" alt="фото">';
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal || e.target.id === 'photoModalClose') closePhotoModal();
+  });
+  document.body.appendChild(modal);
+}
+
+function openPhotoModal(url) {
+  var id = (url.match(/\/d\/([^\/]+)/) || [])[1] || '';
+  var img = document.getElementById('photoModalImg');
+  if (img) img.src = 'https://drive.google.com/thumbnail?id=' + id + '&sz=w1000';
+  var modal = document.getElementById('photoModal');
+  if (modal) modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePhotoModal() {
+  var modal = document.getElementById('photoModal');
+  if (modal) modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closePhotoModal();
+});
+
 document.addEventListener('click', function(e) {
   var btn = e.target.closest('[data-article][data-delta]');
   if (btn && !btn.disabled) {
@@ -416,6 +474,11 @@ document.addEventListener('click', function(e) {
   btn = e.target.closest('[data-copy-article]');
   if (btn) {
     copyArticle(btn);
+    return;
+  }
+  btn = e.target.closest('[data-photo]');
+  if (btn) {
+    openPhotoModal(btn.dataset.photo);
     return;
   }
 });
