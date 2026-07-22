@@ -1,0 +1,12 @@
+{
+  "name": "wysiwyg-editor",
+  "version": "1.0.0",
+  "description": "Vanilla JS WYSIWYG editor with floating toolbar, tables, embeds, and CMS integration",
+  "main": "src/editor.js",
+  "scripts": {
+    "start": "npx serve .",
+    "demo": "npx serve . -o -s -l 3000"
+  },
+  "keywords": ["wysiwyg", "editor", "contenteditable", "vanilla-js", "cms"],
+  "license": "MIT"
+}
