@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Аудит маркетинга FesAuto — 2026</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- Фон-декор -->
+<div class="bg-grid"></div>
+<div class="bg-glow bg-glow-1"></div>
+<div class="bg-glow bg-glow-2"></div>
+
+<!-- Навигация -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="logo">
+      <span class="logo-mark">F</span>
+      <span class="logo-text">FesAuto<span class="logo-accent">Audit</span></span>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#overview">Обзор</a>
+      <a href="#dynamics">Динамика</a>
+      <a href="#sources">Источники</a>
+      <a href="#funnel">Воронка</a>
+      <a href="#efficiency">Экономика</a>
+      <a href="#traffic">Трафик</a>
+      <a href="#asp">АСП</a>
+      <a href="#weak">Слабые места</a>
+      <a href="#growth">Точки роста</a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Хиро -->
+<header class="hero" id="overview">
+  <div class="hero-badge">
+    <span class="dot-pulse"></span>
+    Полный аудит маркетинга · 12 месяцев
+  </div>
+  <h1 class="hero-title">Маркетинг <span class="grad-text">FesAuto</span></h1>
+  <p class="hero-sub">06.08.2025 — 06.08.2026 · Битрикс24 · Яндекс.Метрика · Авито · Дром</p>
+  <div class="hero-kpis" id="kpiGrid"></div>
+  <a class="scroll-hint" href="#dynamics">
+    <span class="scroll-mouse"><i></i></span>
+    <span class="scroll-text">Листайте вниз</span>
+  </a>
+</header>
+
+<!-- Динамика по месяцам -->
+<section class="section" id="dynamics">
+  <div class="section-head reveal">
+    <span class="kicker">Динамика</span>
+    <h2>Лиды по месяцам</h2>
+    <p>Пик в октябре (4 728), затем снижение до ~1 800 — нужно вернуть объём</p>
+  </div>
+  <div class="card reveal" id="monthChart"></div>
+</section>
+
+<!-- Источники -->
+<section class="section" id="sources">
+  <div class="section-head reveal">
+    <span class="kicker">Источники</span>
+    <h2>Откуда приходят лиды</h2>
+    <p>Авито и «НеКлассифицирован» дают почти 2/3 потока</p>
+  </div>
+  <div class="split">
+    <div class="card reveal" id="sourceChart"></div>
+    <div class="card reveal" id="sourceFunnelChart"></div>
+  </div>
+</section>
+
+<!-- Направления -->
+<section class="section" id="directions">
+  <div class="section-head reveal">
+    <span class="kicker">Направления</span>
+    <h2>Структура бизнеса</h2>
+    <p>Салон новых — 77% лидов; АСП, Сервис и МЗ — остальное</p>
+  </div>
+  <div class="split">
+    <div class="card reveal" id="dirChart"></div>
+    <div class="card reveal" id="dirTable"></div>
+  </div>
+</section>
+
+<!-- Воронка -->
+<section class="section" id="funnel">
+  <div class="section-head reveal">
+    <span class="kicker">Воронка</span>
+    <h2>Стадии всех лидов</h2>
+    <p>Почти половина потока — мусор. В работу уходит лишь четверть</p>
+  </div>
+  <div class="split">
+    <div class="card reveal" id="funnelViz"></div>
+    <div class="card reveal" id="funnelDonut"></div>
+  </div>
+</section>
+
+<!-- Экономика каналов -->
+<section class="section" id="efficiency">
+  <div class="section-head reveal">
+    <span class="kicker">Экономика</span>
+    <h2>Стоимость лида и продажи</h2>
+    <p>Платные каналы: Авито 371 ₽/лид против Дром 855 ₽/лид</p>
+  </div>
+  <div class="card reveal" id="effChart"></div>
+  <div class="split">
+    <div class="card reveal" id="budgetAvito"></div>
+    <div class="card reveal" id="budgetDrom"></div>
+  </div>
+  <div class="card reveal" id="freeChart"></div>
+</section>
+
+<!-- Трафик сайтов -->
+<section class="section" id="traffic">
+  <div class="section-head reveal">
+    <span class="kicker">Трафик</span>
+    <h2>Яндекс.Метрика — 3 сайта</h2>
+    <p>FesAuto 61 309 · FesService 150 701 · PRO-Tuning 87 004 визитов</p>
+  </div>
+  <div class="tabs reveal" id="trafficTabs">
+    <button class="tab active" data-site="fesauto">fesauto.ru</button>
+    <button class="tab" data-site="fesservice">fesservice.ru</button>
+    <button class="tab" data-site="protuning">protuning-company.ru</button>
+  </div>
+  <div class="split">
+    <div class="card reveal" id="trafficChart"></div>
+    <div class="card reveal" id="trafficCities"></div>
+  </div>
+</section>
+
+<!-- АСП модель -->
+<section class="section" id="asp">
+  <div class="section-head reveal">
+    <span class="kicker">Отдельная модель</span>
+    <h2>Авто с пробегом (АСП Р263)</h2>
+    <p>1 118 135 ₽/год · 1 585 лидов · 56,7% некачественных</p>
+  </div>
+  <div class="card reveal" id="aspTable"></div>
+  <div class="card reveal" id="aspCrm"></div>
+  <div class="card reveal" id="aspNotes"></div>
+</section>
+
+<!-- Слабые места -->
+<section class="section" id="weak">
+  <div class="section-head reveal">
+    <span class="kicker">Проблемы</span>
+    <h2>Слабые места</h2>
+    <p>9 рисков, которые стоят денег</p>
+  </div>
+  <div class="grid-cards" id="weakGrid"></div>
+</section>
+
+<!-- Точки роста -->
+<section class="section" id="growth">
+  <div class="section-head reveal">
+    <span class="kicker">Рост</span>
+    <h2>Точки роста</h2>
+    <p>10 возможностей с ожидаемым эффектом</p>
+  </div>
+  <div class="grid-cards" id="growthGrid"></div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="logo">
+      <span class="logo-mark">F</span>
+      <span class="logo-text">FesAuto<span class="logo-accent">Audit</span></span>
+    </div>
+    <p>Полный аудит маркетинга · подготовлен 07.08.2026 · данные: Битрикс24, Яндекс.Метрика, Авито, Дром</p>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
