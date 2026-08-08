@@ -21,7 +21,7 @@ function esc(v) {
 
 const HIDE_LABELS = { '№': true, 'Фото': true, 'Бренд': true, 'Назначение': true };
 
-var COL_ARTICLE = -1, COL_BRAND = -1, COL_NAME = -1, COL_QTY = -1, COL_ORG = -1;
+var COL_ARTICLE = -1, COL_BRAND = -1, COL_NAME = -1, COL_QTY = -1, COL_ORG = -1, COL_PRICE = -1;
 
 function cb(json) {
   const cols = json.table.cols.map(c => (c.label || '').trim());
@@ -31,6 +31,7 @@ function cb(json) {
     else if (label === 'Наименование') COL_NAME = i;
     else if (label === 'Кол-во') COL_QTY = i;
     else if (label === 'Организация') COL_ORG = i;
+    else if (label === 'Цена') COL_PRICE = i;
   });
   json.table.rows.forEach(row => {
     const cells = row.c;
@@ -41,6 +42,7 @@ function cb(json) {
     if (name.toLowerCase().indexOf('трансмиссионное') !== -1) category = 'Трансмиссионное';
     var org = cells[COL_ORG] && cells[COL_ORG].v ? ('' + cells[COL_ORG].v).trim() : '';
     var qty = cells[COL_QTY] && cells[COL_QTY].v !== null && cells[COL_QTY].v !== undefined ? cells[COL_QTY].v : '';
+    var price = COL_PRICE >= 0 && cells[COL_PRICE] && cells[COL_PRICE].v !== null && cells[COL_PRICE].v !== undefined ? cells[COL_PRICE].v : '';
     var article = cells[COL_ARTICLE] && cells[COL_ARTICLE].v ? ('' + cells[COL_ARTICLE].v).trim() : '';
     var photoVal = '';
     var defectVal = '';
@@ -64,6 +66,7 @@ function cb(json) {
       { label: 'Наименование', value: name }
     ];
     if (qty !== '') fields.push({ label: 'Остаток', value: qty });
+    if (price !== '') fields.push({ label: 'Цена', value: price });
     if (defectVal) fields.push({ label: 'Дефект', value: defectVal });
     if (photoVal) fields.push({ label: 'Фото', value: photoVal });
     allItems.push(fields);
@@ -132,6 +135,8 @@ function render() {
     var name = '';
     var photoHtml = '';
     var restHtml = '';
+    var defectText = '';
+    var priceVal = '';
 
     fields.forEach(f => {
       var v = f.value + '';
@@ -151,17 +156,25 @@ function render() {
         return;
       }
 
-      if (f.label === 'Остаток') {
-        restHtml += '<div class="field"><span class="label">Остаток:</span> ' + v + '</div>';
+      if (f.label === 'Остаток' || f.label === 'Цена' || f.label === 'Дефект') {
+        if (f.label === 'Дефект') defectText = v;
+        else if (f.label === 'Цена') priceVal = v;
         return;
       }
 
       restHtml += '<div class="field"><span class="label">' + f.label + ':</span> ' + v + '</div>';
     });
 
-    var cardHtml = '<div class="no-photo">Фото ещё нет</div>';
+    var cardHtml = '<div class="photo-wrap">' +
+      (defectText ? '<div class="defect-overlay">' + esc(defectText) + '</div>' : '') +
+      '<div class="no-photo">Фото ещё нет</div></div>';
     if (article) cardHtml += '<div class="article" data-copy-article="' + esc(article) + '" title="Нажмите, чтобы скопировать">' + article + '</div>';
     if (name) cardHtml += '<div class="product-name">' + name + '</div>';
+
+    var numPrice = parseFloat(priceVal);
+    cardHtml += '<div class="price-block">' +
+      '<div class="price-row"><span class="price-label">Цена:</span> <span class="price-new">' + (numPrice > 0 ? numPrice.toLocaleString('ru-RU') + ' ₽' : '0 ₽') + '</span></div></div>';
+
     cardHtml += '<div class="spoiler-btn" data-spoiler>Подробнее <span class="spoiler-arrow">▼</span></div>';
     cardHtml += '<div class="spoiler-content">' + restHtml + '</div>';
 
@@ -173,6 +186,7 @@ function render() {
       var inCartItem = cart.find(function(i) { return i.article === article; });
       var inCartQty = inCartItem ? inCartItem.qty : 0;
       var remaining = qtyVal - inCartQty;
+      cardHtml += '<div class="stock-label">В наличии: ' + qtyVal + ' шт.</div>';
       cardHtml += '<div class="cart-controls">' +
         '<div class="cart-control-qty">' +
         '<button data-article="' + safeArticle + '" data-delta="-1"' + (inCartQty > 0 ? '' : ' disabled') + '>−</button>' +
